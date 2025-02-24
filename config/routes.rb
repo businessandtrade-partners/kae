@@ -255,7 +255,6 @@ Rails.application.routes.draw do
       member do
         patch :resend_confirmation_email
         patch :unlock
-        post :scan_via_debounce_api
       end
     end
 
