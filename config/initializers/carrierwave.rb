@@ -32,7 +32,7 @@ CarrierWave.configure do |config|
   if Rails.env.production? || ENV["ENABLE_VIRUS_SCANNER_BUCKETS"] == "true"
     config.fog_credentials = {
       provider: "AWS",
-      use_iam_profile: true
+      use_iam_profile: true,
       region: ENV["AWS_REGION"],
     }
     config.fog_directory = ENV["AWS_S3_TMP_BUCKET"]
