@@ -21,7 +21,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def fog_credentials
-    Rails.logger.info "fog_credentials"
     clean? ? clean_bucket_credentials : tmp_bucket_credentials
   end
 
@@ -57,7 +56,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def tmp_bucket_credentials
-    Rails.logger.info "tmp_bucket_credentials"
     {
       provider: "AWS",
       use_iam_profile: true,
@@ -66,7 +64,6 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def clean_bucket_credentials
-    Rails.logger.info "clean_bucket_credentials"
     {
       provider: "AWS",
       use_iam_profile: true,
