@@ -34,8 +34,6 @@ CarrierWave.configure do |config|
     config.fog_credentials = {
       provider: "AWS",
       use_iam_profile: true,
-      aws_access_key_id: "",
-      aws_secret_access_key: "",
       region: ENV["AWS_REGION"],
     }
     Rails.logger.info "Fog credentials initialised"
