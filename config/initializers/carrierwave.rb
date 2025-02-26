@@ -30,19 +30,22 @@ end
 
 CarrierWave.configure do |config|
   if Rails.env.production? || ENV["ENABLE_VIRUS_SCANNER_BUCKETS"] == "true"
-    puts "Environment is production. Initialising fog credentials"
+    Rails.logger.info "Environment is production. Initialising fog credentials"
     config.fog_credentials = {
       provider: "AWS",
       use_iam_profile: true,
+      aws_access_key_id: "",
+      aws_secret_access_key: "",
       region: ENV["AWS_REGION"],
     }
-    puts "Fog credentials initialised"
+    Rails.logger.info "Fog credentials initialised"
     config.fog_directory = ENV["AWS_S3_TMP_BUCKET"]
     config.storage = :fog
     config.fog_public = false
     config.cache_dir = "/tmp/carrierwave"
     config.cache_storage = :fog
   else
+    Rails.logger.info "Environment is not production."
     config.storage = :file
     config.enable_processing = false if Rails.env.test?
     config.root = Rails.root.join("public")
