@@ -1,6 +1,12 @@
 require "carrierwave"
 require "carrierwave/storage/fog"
 require "fog/aws"
+require 'aws-sdk-s3'
+
+Aws.config.update({
+  region: ENV["AWS_REGION"],
+  credentials: Aws::ECSCredentials.new
+})
 
 class CustomStorage
   def self.new(uploader)
