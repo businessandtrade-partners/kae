@@ -20,11 +20,6 @@ class FileUploader < CarrierWave::Uploader::Base
     "#{@original_filename.gsub(/\W/, "").gsub(/#{file.extension}\z/, "")}.#{file.extension}" if @original_filename.present?
   end
 
-  def fog_credentials
-    Rails.logger.info "fog_credentials"
-    clean? ? clean_bucket_credentials : tmp_bucket_credentials
-  end
-
   def fog_directory
     clean? ? ENV["AWS_S3_PERMANENT_BUCKET"] : ENV["AWS_S3_TMP_BUCKET"]
   end
