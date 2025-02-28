@@ -2,3 +2,5 @@ repository: kae
 builder:
   name: paketobuildpacks/builder-jammy-full
   version: 0.3.431
+packs:
+  - acodeninja/install
