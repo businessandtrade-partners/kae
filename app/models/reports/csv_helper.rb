@@ -9,9 +9,7 @@ module Reports::CsvHelper
         form_answer = Reports::FormAnswer.new(form_answer)
 
         csv << mapping.map do |m|
-          Utils::String.sanitize(
-            form_answer.call_method(m[:method]),
-          )
+          unescape_and_sanitize(form_answer.call_method(m[:method]))
         end
       end
     end
@@ -29,8 +27,7 @@ module Reports::CsvHelper
         end
 
         csv << mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
+          unescape_and_sanitize(f.call_method(m[:method]))
         end
       end
     end
@@ -44,8 +41,7 @@ module Reports::CsvHelper
         f = Reports::FormAnswer.new(fa, limited_access)
 
         row = mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
+          unescape_and_sanitize(f.call_method(m[:method]))
         end
 
         yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)
@@ -54,6 +50,14 @@ module Reports::CsvHelper
   end
 
   private
+
+  def unescape_and_sanitize(string)
+    CGI.unescapeHTML(
+      Utils::String.sanitize(
+        string,
+      ),
+    )
+  end
 
   def find_each_with_order(scope, batch_size: 100, &block)
     ordered_ids = scope.pluck(:id)
