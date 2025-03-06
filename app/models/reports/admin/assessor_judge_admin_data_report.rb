@@ -56,7 +56,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
         u = Reports::User.new(user)
 
         csv << mapping.map do |m|
-          Utils::String.sanitize(
+          unescape_and_sanitize(
             u.call_method(m[:method]),
           )
         end
@@ -66,7 +66,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
         u = Reports::User.new(user)
 
         csv << mapping.map do |m|
-          Utils::String.sanitize(
+          unescape_and_sanitize(
             u.call_method(m[:method]),
           )
         end
@@ -76,7 +76,7 @@ class Reports::Admin::AssessorJudgeAdminDataReport
         u = Reports::User.new(user)
 
         csv << mapping.map do |m|
-          Utils::String.sanitize(
+          unescape_and_sanitize(
             u.call_method(m[:method]),
           )
         end
