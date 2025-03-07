@@ -3,32 +3,13 @@
     .form-container
       label.form-label for="form_answer_data_#{@form_answer.goods_and_services_key}" Description of goods/services
       .form-value
-        - if !@form_answer.trade?
-          p = @form_answer.goods_and_services
-        - elsif @form_answer.document["trade_goods_and_services_explanations"].present?
-          ul.list-unstyled.good-services-list
-            - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
-              - if index < @form_answer.document["trade_goods_and_services_explanations"].length
-                li
-                  label.label-small
-                    = "Goods/services #{index + 1}"
-                  p
-                    = service["desc_short"]
+        p = @form_answer.goods_and_services
       - if user_can_edit(@form_answer, :goods_services)
         = simple_form_for [namespace_name, resource], remote: true, authenticity_token: true, html: { data: { type: "html", inline_flash_target: "form" }, id: "goods_services_form_admin_appraisal" } do |f|
           = hidden_field_tag :section, "goods_services", id: "section_goods_services_hidden_field"
           .form-fields.form-block
             = f.simple_fields_for :data, include_id: false do |f|
-              - if !@form_answer.trade?
-                = f.input @form_answer.goods_and_services_key, as: :text, label: false, input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15, id: "form_answer_data_#{@form_answer.goods_and_services_key}" }
-              - elsif @form_answer.document["trade_goods_and_services_explanations"].present?
-                ul.list-unstyled.good-services-list
-                  - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
-                    - if index < @form_answer.document["trade_goods_and_services_explanations"].length
-                      li.well
-                        label
-                          = "Goods/services #{index + 1}"
-                        input.form-control.js-chart-count type="text" name="form_answer[data_attributes][trade_goods_and_services_explanations][#{index}][desc_short]" value="#{service["desc_short"]}" rows= 3 data-word-max = 15 id="form_answer_data_#{@form_answer.goods_and_services_key}"
+              = f.input @form_answer.goods_and_services_key, as: :text, label: false, input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15, id: "form_answer_data_#{@form_answer.goods_and_services_key}" }
             .form-actions.text-right
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide", data: { element_focus_target: "dismiss" }
               = f.submit "Save", class: "btn btn-primary pull-right"
