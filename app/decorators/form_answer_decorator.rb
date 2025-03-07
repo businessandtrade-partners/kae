@@ -398,6 +398,10 @@ class FormAnswerDecorator < ApplicationDecorator
     document["ultimate_control_company_country"]
   end
 
+  def trade_desc_short
+    sanitize_html document["trade_description_short"]
+  end
+
   def innovation_desc_short
     sanitize_html document["innovation_desc_short"]
   end
@@ -420,6 +424,8 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def goods_and_services_key
     case award_type
+    when "trade"
+      "trade_description_short"
     when "innovation"
       "innovation_desc_short"
     when "mobility"
@@ -441,6 +447,8 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def goods_and_services
     case award_type
+    when "trade"
+      trade_desc_short
     when "innovation"
       innovation_desc_short
     when "mobility"

@@ -34,6 +34,7 @@ DOCUMENT_FIELDS = {
   development_desc_short: "development_desc_short",
   development_management_approach_briefly: "development_management_approach_briefly",
   mobility_desc_short: "initiative_desc_short",
+  trade_desc_short: "trade_description_short",
   organisation_type: "organisation_type",
 }
 
