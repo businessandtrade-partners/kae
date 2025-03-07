@@ -415,7 +415,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def mobility_desc_short
-    sanitize_html document["mobility_desc_short"]
+    sanitize_html document[goods_and_services_key]
   end
 
   def one_line_description_of_interventions
@@ -429,7 +429,13 @@ class FormAnswerDecorator < ApplicationDecorator
     when "innovation"
       "innovation_desc_short"
     when "mobility"
-      "mobility_desc_short"
+      if award_year.year <= 2020
+        "mobility_desc_short"
+      elsif award_year.year <= 2023
+        (document["application_category"] == "initiative") ? "initiative_desc_short" : "organisation_desc_short"
+      else
+        "initiative_desc_short"
+      end
     when "development"
       if award_year.year >= 2020
         "one_line_description_of_interventions"

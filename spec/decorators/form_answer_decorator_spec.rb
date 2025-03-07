@@ -193,7 +193,7 @@ describe FormAnswerDecorator do
     describe "##{field}" do
       it "returns the document field with key #{DOCUMENT_FIELDS[field]}" do
         document = { DOCUMENT_FIELDS[field] => "An expected value" }
-        form = build(:form_answer, :development, document: document)
+        form = build(:form_answer, (field == :mobility_desc_short) ? :mobility : :development, document: document)
 
         decorated_app = described_class.new(form)
         expect(decorated_app.send(field)).to eq(document[DOCUMENT_FIELDS[field]])
