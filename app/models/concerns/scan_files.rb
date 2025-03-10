@@ -33,13 +33,9 @@ module ScanFiles
   def move_to_permanent_s3_bucket(file)
     tmp_bucket_s3_client = Aws::S3::Client.new({
       region: ENV["AWS_REGION"],
-      access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
-      secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
     })
     clean_bucket_s3_client = Aws::S3::Client.new({
       region: ENV["AWS_REGION"],
-      access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
-      secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
     })
 
     object_to_copy = tmp_bucket_s3_client.get_object(
@@ -100,10 +96,10 @@ module ScanFiles
             move_to_clean_bucket(:#{file_attr_name})
             return true
           end
-          
+
           key = { model: self.class.name, column: '#{file_attr_name}', id: id }.to_json
           FileScanJob.perform_later(key, self.class.name, id, '#{file_attr_name}')
-          
+
           update_column('#{file_attr_name}_scan_results', 'scanning')
           true
         end
