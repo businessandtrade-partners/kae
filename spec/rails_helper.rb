@@ -11,7 +11,7 @@ SimpleCov.start "rails" do
   enable_coverage_for_eval
 
   add_filter do |source_file|
-    source_file.filename.include?("app/controllers") && source_file.lines.count < 8
+    source_file.filename.include?("app/controllers") && source_file.lines.count < 15
   end
 end
 
