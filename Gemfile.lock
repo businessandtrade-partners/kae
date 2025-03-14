@@ -172,7 +172,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
-    date (3.3.4)
+    date (3.4.1)
     debug_inspector (1.1.0)
     decent_exposure (3.0.4)
       activesupport (>= 4.0)
@@ -343,7 +343,7 @@ GEM
     multi_json (1.15.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    net-imap (0.4.10)
+    net-imap (0.4.19)
       date
       net-protocol
     net-pop (0.1.2)
@@ -650,7 +650,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.11)
     timecop (0.9.6)
-    timeout (0.4.1)
+    timeout (0.4.3)
     ttfunk (1.7.0)
     turnip (4.2.0)
       cucumber-gherkin (~> 14.0)
