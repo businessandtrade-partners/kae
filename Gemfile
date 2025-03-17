@@ -75,7 +75,7 @@ gem "kaminari"
 gem "wicked", "~> 1.1"
 
 # Statemachine
-gem "statesman", "3.5.0"
+gem "statesman", "9.0.1"
 
 # Form & Data helpers
 gem "simple_form", "~> 5.0"
