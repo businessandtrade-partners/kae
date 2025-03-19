@@ -1092,7 +1092,10 @@ CREATE TABLE public.palace_attendees (
     has_royal_family_connections boolean,
     royal_family_connection_details text,
     dietary_requirements character varying,
-    disabled_access boolean
+    disabled_access boolean,
+    sector character varying,
+    association_to_commonwealth_countries character varying,
+    leader_or_volunteer_in_an_initiative character varying
 );
 
 
@@ -4388,6 +4391,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20231025022311'),
 ('20240314105208'),
 ('20240501155226'),
-('20241101151806');
+('20241101151806'),
+('20250319093743');
 
 
