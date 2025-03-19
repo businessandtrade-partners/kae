@@ -94,7 +94,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
       visit edit_palace_invite_path(id: palace_invite.token)
     end
 
-    let(:title) { "MyTitle" }
+    let(:title) { "Mr" }
     let(:my_first_name) { "MyFirstName" }
     let(:attendee) do
       palace_invite.reload.palace_attendees.first
@@ -102,7 +102,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Save" do
       it "should allow to Save palace attendees as a draft without validation" do
-        fill_in "Title", with: title
+        select "Mr", from: "Title"
         fill_in "First name", with: my_first_name
 
         expect {
@@ -125,18 +125,21 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Submit" do
       it "should allow to Submit valid palace attendees" do
-        fill_in "Title", with: title
+        select "Mr", from: "Title"
         fill_in "First name", with: my_first_name
         fill_in "Surname", with: "Test"
         fill_in "Job title/position", with: "Test"
+        fill_in "Sector", with: "Test"
         fill_in "Decorations/post-nominals", with: "Test"
         royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
         royal_family_connections.set(true)
+        fill_in "If you have any association with Commonwealth countries, please provide details. (If not, leave blank.)", with: "I am head of state for most of them"
+        fill_in "If you are a leader or volunteer in a Culture, Community, or Climate initiative, please provide details. (If not, leave blank.)", with: "Too much to write here. I'll send a letter"
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
         fill_in "Address line 1", with: "Test"
         fill_in "Address line 2", with: "Test"
         fill_in "City or town", with: "Test"
-        fill_in "County", with: "Test"
+        select "Aberdeenshire", from: "County"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
         disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
