@@ -1,32 +1,73 @@
-#The King's Awards for Enterprise Reception at Windsor Castle, <%= @reception_date.try(:strftime, "%A %-d %B %Y") %>.
+#Congratulations! You have achieved a King's Award for Enterprise: <%= @award_category_title %> <%= @award_year %> [<%= @urn %>]
 
-Dear <%= @name %>,
+<%= "Dear #{@name}," %>
 
-We are delighted to announce that a Reception will be held at Windsor Castle on <%= @reception_date.try(:strftime, "%A, %-d %B %Y, at #{@reception_date_time}") %> to celebrate the achievements of the recipients of The King's Awards for Enterprise 2025.
+Thank you for your application for a King's Award for Enterprise.
 
-Each company is able to nominate one representative to attend. The number of guests is not able to be increased.
+I am delighted to inform you that His Majesty The King has approved the Prime Minister's recommendation that your company should receive a King's Award for Enterprise in the <%= @award_category_title %> category this year.
 
-Specific details about the event including directions, security, parking, and arrangements for accessibility will be included with the formal invitation, which The Royal Household will send to guests approximately four weeks prior to the event.
+The Award is the most prestigious for UK businesses, and this is a tremendous achievement. Your business now joins over 8,000 UK enterprises that have received this Royal recognition since the Awards were first created in 1965, then known as The Queen's Award to Industry.
 
-Please read the following important notices carefully, as key deadlines are included:
+The King’s Award for Enterprise is a globally recognised mark of achievement, celebrating the great work of your company and rewarding any challenges you have overcome. Being a King’s Award recipient can generate new opportunities for your business to grow, such as access to new clients, markets and investors, as well as the ability to attract and retain a skilled workforce.
 
-#Important notices:
+Please read this email carefully, as it contains important information further down the page about two key actions you need to take now. If you are a Collaborator, please ensure that you liaise with the Account Holder over the next steps.
 
-* We kindly ask that you do not publicise the date or time of this event in advance.
-* Guests will arrive at the Castle from 5:15 pm, and entry will not be considered after 5:45 pm.
-* Shuttle buses and buggies will be available on entry to support those with any mobility issues on the evening.
-* Cloakrooms and restrooms are available as guests enter the Castle.
-* Please note that mobile phones, cameras or electronic devices should not be used during the Reception. However, a host photographer will be present, and details of how to access the images will be provided on the evening.
-* Members of The Royal Family will circulate throughout the Reception, although it may not be possible for every guest to be met in person.
+#Public Announcement and Embargo Terms
 
-#Submission of guest details:
+I understand that this is a very exciting time for you personally. However, please bear in mind the following conditions:
 
-The nominated guest must be an employed representative of the successful company. To submit their details, please fill in the following online invitation form - we can only accept details via this form, not by email:
+There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before <%= @end_of_embargo.try :strftime, "%-d %B" %>.
+
+#We do encourage you to privately make arrangements now for your announcement to go live on <%= @end_of_embargo.try :strftime, "%-d %B %Y from #{@end_of_embargo_time}" %>.
+
+#Terms of the Embargo
+
+We have provided Awards information to the media, including a list of Recipients and their press contact details, so that they can prepare news articles for release on <%= @media_deadline.try :strftime, "%-d %B" %>.
+
+The list of Recipients will be published in the supplement to the London Gazette on <%= @media_deadline.try :strftime, "%A, %-d %B" %> https://www.thegazette.co.uk/all-notices/content/101145.
+
+Prior to the official announcement on <%= @media_deadline.try :strftime, "%-d %B" %>, you may be contacted by the press, including The King's Award Magazine, regarding your Award. You are permitted to speak to them; however, this will be under embargo conditions. You are also permitted to approach your own press contacts to arrange media coverage of your Award.
+
+#However, please make it clear to anyone that you approach in the media, that they cannot publish anything until after <%= @end_of_embargo.try :strftime, "#{@end_of_embargo_time} on %-d %B %Y" %>.
+
+Please read this email carefully, as it contains important information about two key actions that you now need to take. If you are a Collaborator, please ensure that you liaise with the Account Holder over the next steps.
+
+#ACTIONS TO TAKE NOW:
+
+#Approve your Press Book entry by <%= @press_summary_deadline.try :strftime, "#{@press_summary_deadline_time} on %A %-d %B %Y" %>: the Press Book entry must be a factual account of why you have achieved the Award.
+
+Log in to your King's Awards for Enterprise account <%= dashboard_url %> to access the Recipients' Dashboard in order to:
+
+* Check the Press Book entry;
+* Check the other details for your organisation are correct;
+* Check the details of your contact for press enquiries,
+* Click the submit button by the deadline.
+* Please could you also take the opportunity to check the other details for your organisation are correct – including your county as this will be crucial to identifying your local Lord-Lieutenant. To do this, you can search under ‘lieutenancy’ or ‘Lord-Lieutenant’ on your local authority website or web search.
+
+You can find examples of other Recipients' press book information in The Gazette at the link above.
+
+#If you do not respond by the deadline, we will use the proposed text and the press contact details that we already hold in your application form.
+
+#2. Nominate one member of your organisation to attend a Reception at Windsor Castle and submit guest details online by <%= @reception_deadline.try(:strftime, "%A, %-d %B %Y, #{@reception_deadline_time}") %>
+
+One representative from each successful organisation will be invited to attend a Reception at Windsor Castle. Unfortunately, this number cannot be increased.
+
+Please log in to the system to see further information and submit guest details. We can only accept details via this form, not by email:
 <%= edit_palace_invite_url(id: @token) %>
 
-Please ensure the address details are those of the company representative being invited to the Reception and not of the person or agent submitting the details.
+Please ensure the address details are those of the company representative being invited to the Reception.
 
-#I would be grateful if you could provide the requested information no later than <%= @reception_deadline.try(:strftime, "#{@reception_deadline_time} on %A, %-d %B %Y") %>.
+Details such as dress code, directions, security and accessibility are provided on the online form and in the formal invitation which The Royal Household will send approximately 3 weeks prior to the event.
+
+#To be Aware
+
+#The King's Awards Recipients Manual
+
+On your online account, you will also have access to The King's Awards Recipients Manual, which provides all relevant information about your Award and the permitted use of the Royal Emblem for marketing/promotion purposes. You can also access the King's Awards <%= @form_answer.award_year.year %> Emblems in various file types.
+
+By accepting the Award, you agree to the terms set out in The King's Awards for Enterprise Recipients Manual.
+
+Congratulations once again on your King's Award for Enterprise and I look forward to hearing from you by <%= @reception_deadline.try(:strftime, "%-d %B." %>
 
 Yours sincerely,
 
