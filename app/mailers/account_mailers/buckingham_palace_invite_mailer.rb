@@ -8,6 +8,8 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     form_answer = FormAnswer.find(form_answer_id).decorate
     invite = form_answer.palace_invite
     @token = invite.token
+    @award_year = form_answer.award_year.year
+    @award_category_title = form_answer.award_type_full_name
 
     if notify_to_press_contact.present?
       @email = form_answer.press_contact_details_email
