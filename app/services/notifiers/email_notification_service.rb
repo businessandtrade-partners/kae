@@ -152,8 +152,16 @@ class Notifiers::EmailNotificationService
   end
 
   def winners_notification(award_year)
+    winners = award_year.form_answers.business.winners
+    winners.each do |form_answer|
+      PalaceInvite.where(
+        email: form_answer.decorate.head_of_business_email,
+        form_answer_id: form_answer.id,
+      ).first_or_create
+    end
+
     gather_data_and_send_emails!(
-      award_year.form_answers.business.winners,
+      winners,
       AccountMailers::BusinessAppsWinnersMailer,
     )
   end

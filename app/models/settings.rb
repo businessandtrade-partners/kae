@@ -109,9 +109,11 @@ class Settings < ApplicationRecord
       DateTime.now >= deadline.trigger_at if deadline.present?
     end
 
-    def winners_stage?
+    def winners_stage?(settings = nil)
+      settings = current if settings.blank?
+
       deadline = Rails.cache.fetch("winners_notification_notification", expires_in: 1.minute) do
-        current.winners_email_notification
+        settings.winners_email_notification
       end
 
       DateTime.now >= deadline.trigger_at if deadline.present?
