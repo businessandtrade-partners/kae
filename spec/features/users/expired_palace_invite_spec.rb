@@ -25,7 +25,7 @@ describe "expired reception attendee information deadline" do
   before do
     AwardYear.buckingham_palace_reception_deadline(form_answer.award_year).update_column(:trigger_at, Time.current.end_of_year)
 
-    expect(Settings).to receive(:buckingham_palace_invites_stage?)
+    expect(Settings).to receive(:winners_stage?)
                           .with(invite.form_answer.award_year.settings)
                           .and_return(true)
 
