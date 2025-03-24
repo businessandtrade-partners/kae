@@ -50,13 +50,23 @@ jobs:
         with:
           node-version: '20'
       - run: npm install -g yarn
-      - uses: nanasess/setup-chromedriver@master
+      - name: Remove Chrome bundled within image
+        run: sudo apt-get purge google-chrome-stable
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: '128.0.6613.137'
+          install-chromedriver: true
+          install-dependencies: true
+      - name: Verify installed Chrome version
+        run: chrome --product-version
       - name: Build and run tests
         env:
           DISPLAY_SOCIAL_MOBILITY_AWARD: true
           DATABASE_URL: 'postgresql://postgres:postgres@localhost:5432/qae_test'
           BUNDLER_VERSION: 2.5.6
           DOCKER_TLS_CERTDIR: ''
+          BROWSER_VERSION: '128.0.6613.137'
         run: |
           sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
           wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
