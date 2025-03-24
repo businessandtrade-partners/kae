@@ -56,7 +56,7 @@ class PalaceInvitesController < ApplicationController
   end
 
   def require_palace_invite_to_be_not_submitted_and_proper_stage!
-    if !Settings.buckingham_palace_invites_stage?(@invite.form_answer.award_year.settings)
+    if !Settings.winners_stage?(@invite.form_answer.award_year.settings)
       flash.notice = "Access denied!"
       redirect_to dashboard_url
 
