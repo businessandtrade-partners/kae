@@ -38,17 +38,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
   end
 
   let!(:settings) do
-    s = create(:settings, :expired_submission_deadlines)
-    s.email_notifications.create!(
-      kind: "winners_notification",
-      trigger_at: DateTime.now - 1.year,
-    )
-
-    s
+    create(:settings, :expired_submission_deadlines)
   end
 
   describe "Access" do
-    describe "Should be buckingham palace invites stage" do
+    describe "Should be at the winners stage" do
       it "should reject applicant with access denied message" do
         visit dashboard_path
         expect(page).to_not have_link("Palace Attendees")
@@ -57,7 +51,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(page).to have_no_content("Windsor Castle Attendee")
 
         settings.email_notifications.create!(
-          kind: "buckingham_palace_invite",
+          kind: "winners_notification",
           trigger_at: DateTime.now - 1.year,
         )
 
@@ -69,7 +63,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
     describe "Invite should be not submitted yet" do
       before do
         settings.email_notifications.create!(
-          kind: "buckingham_palace_invite",
+          kind: "winners_notification",
           trigger_at: DateTime.now - 1.year,
         )
         palace_invite.submitted = true
@@ -87,7 +81,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
   describe "Save & Submit" do
     before do
       settings.email_notifications.create!(
-        kind: "buckingham_palace_invite",
+        kind: "winners_notification",
         trigger_at: DateTime.now - 1.year,
       )
 
