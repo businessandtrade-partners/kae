@@ -18,8 +18,28 @@ div
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(date_format: "%-d %B %Y,")
           | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
+        h2.govuk-heading-m Important notices
+
+        ul
+          li
+            p.govuk-body We kindly ask that you do not publicise the date or time of this event in advance.
+          li
+            p.govuk-body Guests will arrive at the Castle from 5:30 pm, and entry will not be considered after 5:45 pm.
+          li
+            p.govuk-body Shuttle buses and buggies will be available on entry to support those with any mobility issues on the evening.
+          li
+            p.govuk-body Cloakrooms and restrooms are available as guests enter the Castle.
+          li
+            p.govuk-body Please note that mobile phones, cameras or electronic devices should not be used during the Reception. However, a host photographer will be present, and details of how to access the images captured will be provided on the evening.
+          li
+            p.govuk-body Members of The Royal Family will circulate throughout the Reception, although it may not be possible for every guest to be met in person.
+          li
+            p.govuk-body Please also take this opportunity to confirm that your organisation’s county is correctly listed on your application account, as this will help you identify correctly your local Lord Lieutenant to arrange your Award presentation event.
+
+        br
+
         p.govuk-body
-          | Please aim to arrive from 5:00 pm; entry will not be considered after 5:45 pm. The Royal Household will send full details in the formal invitation approximately four weeks before the Reception.
+          | Please aim to arrive from 5:30 pm; entry will not be considered after 5:45 pm. The Royal Household will send full details in the formal invitation approximately four weeks before the Reception.
 
         - if !@invite.submitted?
           = render 'form'
