@@ -54,12 +54,12 @@ module AdminShortlistedDocsContext
 
     respond_to do |format|
       format.html do
-        if request.xhr? || request.format.js?
-          head :ok
-        else
-          render_flash_message_for(resource)
-          redirect_to [namespace_name, form_answer]
-        end
+        render_flash_message_for(resource)
+        redirect_to [namespace_name, form_answer]
+      end
+
+      format.js do
+        head :ok
       end
     end
   end
