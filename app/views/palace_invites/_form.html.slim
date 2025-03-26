@@ -16,7 +16,7 @@ p.govuk-body
           - i += 1
 
           .question-group
-            = ff.input :title, input_html: { class: "small" }, as: :select, collection: User::POSSIBLE_TITLES
+            = ff.input :title, input_html: { class: "small" }, as: :select, collection: PalaceInvite::POSSIBLE_TITLES
 
           .question-group
             = ff.input :first_name, input_html: { class: "medium" }
@@ -72,7 +72,7 @@ p.govuk-body
                                       label: "City or town"
 
             = ff.input :address_4, input_html: { class: "large" },
-                                      label: "County", as: :select, collection: counties
+                                      label: "County", as: :select, collection: palace_invite_counties
 
           .question-group
             = ff.input :postcode, input_html: { class: "small" }
