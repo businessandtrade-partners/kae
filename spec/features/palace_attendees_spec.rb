@@ -56,7 +56,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_content("Windsor Castle Attendee")
+        expect(page).to have_content("Royal Reception at Windsor Castle")
       end
     end
 
@@ -72,7 +72,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
       it "should reject applicant with access denied message" do
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect_to_see "Windsor Castle Attendee"
+        expect_to_see "Royal Reception at Windsor Castle"
         expect(page).to have_no_content("Save")
       end
     end
@@ -88,7 +88,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
       visit edit_palace_invite_path(id: palace_invite.token)
     end
 
-    let(:title) { "Mr" }
+    let(:title) { "Mr." }
     let(:my_first_name) { "MyFirstName" }
     let(:attendee) do
       palace_invite.reload.palace_attendees.first
@@ -96,7 +96,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Save" do
       it "should allow to Save palace attendees as a draft without validation" do
-        select "Mr", from: "Title"
+        select "Mr.", from: "Title"
         fill_in "First name", with: my_first_name
 
         expect {
@@ -119,7 +119,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Submit" do
       it "should allow to Submit valid palace attendees" do
-        select "Mr", from: "Title"
+        select "Mr.", from: "Title"
         fill_in "First name", with: my_first_name
         fill_in "Surname", with: "Test"
         fill_in "Job title/position", with: "Test"
@@ -133,7 +133,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Address line 1", with: "Test"
         fill_in "Address line 2", with: "Test"
         fill_in "City or town", with: "Test"
-        select "Aberdeenshire", from: "County"
+        select "Avon", from: "County"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
         disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
