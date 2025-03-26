@@ -1,4 +1,4 @@
-#Congratulations! You have achieved a King's Award for Enterprise: <%= @form_answer.award_type_full_name %> <%= @form_answer.award_year.year %>
+#Congratulations! You have achieved a King's Award for Enterprise: <%= @form_answer.award_type_full_name %> <%= @form_answer.award_year.year %> [<%= @form_answer.urn %>]
 
 Dear <%= @name %>,
 
@@ -34,11 +34,11 @@ Please read this email carefully, as it contains important information about two
 
 Log in to your King's Awards for Enterprise account <%= dashboard_url %> to access the Recipients' Dashboard in order to:
 
-* Check the Press Book entry;
-* Check the other details for your organisation are correct;
+* Check the Press Book entry
+* Check the other details for your organisation are correct
 * Check the details of your contact for press enquiries
-* Click the submit button by the deadline.
-* Please could you also take the opportunity to check the other details for your organisation are correct - including your county as this will be crucial to identifying your local Lord-Lieutenant. To do this, you can search under 'lieutenancy' or 'Lord-Lieutenant' on your local authority website or web search.
+* Click the submit button by the deadline
+* Please could you also take the opportunity to check the other details for your organisation are correct - including your county as this will be crucial to identifying your local Lord-Lieutenant. To do this, you can search under 'lieutenancy' or 'Lord-Lieutenant' on your local authority website or web search
 
 You can find examples of other Recipients' press book information in The Gazette at the link above.
 
@@ -48,8 +48,7 @@ You can find examples of other Recipients' press book information in The Gazette
 
 One representative from each successful organisation will be invited to attend a Reception at Windsor Castle. Unfortunately, this number cannot be increased.
 
-Please log in to the system to see further information and submit guest details. We can only accept details via this form, not by email:
-<%= edit_palace_invite_url(id: @token) %>
+An email has been sent to your head of organisation and your press book contact with a link to a form to nominate one guest to attend the Reception. Applicants should agree one person to work on the form. We can only accept details via this form.
 
 Please ensure the address details are those of the company representative being invited to the Reception.
 
