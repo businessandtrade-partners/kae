@@ -20,11 +20,20 @@ describe "Assessor feedback management" do
         expect(page).to have_css("textarea[name='feedback[level_of_innovation_strength]']", visible: true)
         fill_in "feedback[level_of_innovation_strength]", with: "Feedback 101"
         click_link "Save"
-
         wait_for_ajax
       end
 
       expect(page).to have_selector(".form-value", text: "Feedback 101")
+
+      within "#section-feedback .extent_of_value_added" do
+        click_link("Edit")
+        fill_in "feedback[extent_of_value_added_strength]", with: "Feedback 102"
+        click_link "Save"
+        wait_for_ajax
+      end
+
+      expect(page).to have_selector(".form-value", text: "Feedback 101")
+      expect(page).to have_selector(".form-value", text: "Feedback 102")
     end
   end
 
