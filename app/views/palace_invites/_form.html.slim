@@ -16,7 +16,7 @@ p.govuk-body
           - i += 1
 
           .question-group
-            = ff.input :title, input_html: { class: "small" }
+            = ff.input :title, input_html: { class: "small" }, as: :select, collection: PalaceInvite::POSSIBLE_TITLES
 
           .question-group
             = ff.input :first_name, input_html: { class: "medium" }
@@ -28,6 +28,10 @@ p.govuk-body
           .question-group
             = ff.input :job_name, input_html: { class: "medium" },
                                   label: "Job title/position"
+
+          .question-group
+            = ff.input :sector, input_html: { class: "medium" },
+                                  label: "Sector"
 
           .question-group
             = ff.input :post_nominals, input_html: { class: "medium" },
@@ -51,6 +55,12 @@ p.govuk-body
                        wrapper_html: { class: "royal-connection-wrapper" }
 
           .question-group
+            = ff.input :association_to_commonwealth_countries, as: :text, input_html: { rows: 5 }, label: "If you have any association with Commonwealth countries, please provide details. (If not, leave blank.)"
+
+          .question-group
+            = ff.input :leader_or_volunteer_in_an_initiative, as: :text, input_html: { rows: 5 }, label: "If you are a leader or volunteer in a Culture, Community, or Climate initiative, please provide details. (If not, leave blank.)"
+
+          .question-group
             = ff.input :address_1, input_html: { class: "large" },
                                      hint: "The address should match the identification documents the attendee will bring on the evening. More detailed guidance will be provided with the formal invitation.",
                                      label: "Address line 1"
@@ -62,7 +72,7 @@ p.govuk-body
                                       label: "City or town"
 
             = ff.input :address_4, input_html: { class: "large" },
-                                      label: "County"
+                                      label: "County", as: :select, collection: palace_invite_counties
 
           .question-group
             = ff.input :postcode, input_html: { class: "small" }
@@ -71,7 +81,7 @@ p.govuk-body
                                       label: "Telephone number",
                                       hint: "if known"
           .question-group
-            = ff.input :dietary_requirements, as: :text, input_html: { rows: 5 }, label: "Dietary needs"
+            = ff.input :dietary_requirements, as: :select, input_html: { rows: 5 }, label: "Dietary needs", collection: User::DIETARY_REQUIREMENTS
 
           .question-group
             label.govuk-label
