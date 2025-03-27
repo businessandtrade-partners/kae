@@ -38,17 +38,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
   end
 
   let!(:settings) do
-    s = create(:settings, :expired_submission_deadlines)
-    s.email_notifications.create!(
-      kind: "winners_notification",
-      trigger_at: DateTime.now - 1.year,
-    )
-
-    s
+    create(:settings, :expired_submission_deadlines)
   end
 
   describe "Access" do
-    describe "Should be buckingham palace invites stage" do
+    describe "Should be at the winners stage" do
       it "should reject applicant with access denied message" do
         visit dashboard_path
         expect(page).to_not have_link("Palace Attendees")
@@ -57,19 +51,19 @@ So that I provide a full list of attendees for Buckingham Palace reception
         expect(page).to have_no_content("Windsor Castle Attendee")
 
         settings.email_notifications.create!(
-          kind: "buckingham_palace_invite",
+          kind: "winners_notification",
           trigger_at: DateTime.now - 1.year,
         )
 
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect(page).to have_content("Windsor Castle Attendee")
+        expect(page).to have_content("Royal Reception at Windsor Castle")
       end
     end
 
     describe "Invite should be not submitted yet" do
       before do
         settings.email_notifications.create!(
-          kind: "buckingham_palace_invite",
+          kind: "winners_notification",
           trigger_at: DateTime.now - 1.year,
         )
         palace_invite.submitted = true
@@ -78,7 +72,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
       it "should reject applicant with access denied message" do
         visit edit_palace_invite_path(id: palace_invite.token)
-        expect_to_see "Windsor Castle Attendee"
+        expect_to_see "Royal Reception at Windsor Castle"
         expect(page).to have_no_content("Save")
       end
     end
@@ -87,14 +81,14 @@ So that I provide a full list of attendees for Buckingham Palace reception
   describe "Save & Submit" do
     before do
       settings.email_notifications.create!(
-        kind: "buckingham_palace_invite",
+        kind: "winners_notification",
         trigger_at: DateTime.now - 1.year,
       )
 
       visit edit_palace_invite_path(id: palace_invite.token)
     end
 
-    let(:title) { "MyTitle" }
+    let(:title) { "Mr." }
     let(:my_first_name) { "MyFirstName" }
     let(:attendee) do
       palace_invite.reload.palace_attendees.first
@@ -102,7 +96,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Save" do
       it "should allow to Save palace attendees as a draft without validation" do
-        fill_in "Title", with: title
+        select "Mr.", from: "Title"
         fill_in "First name", with: my_first_name
 
         expect {
@@ -125,18 +119,21 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     describe "Submit" do
       it "should allow to Submit valid palace attendees" do
-        fill_in "Title", with: title
+        select "Mr.", from: "Title"
         fill_in "First name", with: my_first_name
         fill_in "Surname", with: "Test"
         fill_in "Job title/position", with: "Test"
+        fill_in "Sector", with: "Test"
         fill_in "Decorations/post-nominals", with: "Test"
         royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
         royal_family_connections.set(true)
+        fill_in "If you have any association with Commonwealth countries, please provide details. (If not, leave blank.)", with: "I am head of state for most of them"
+        fill_in "If you are a leader or volunteer in a Culture, Community, or Climate initiative, please provide details. (If not, leave blank.)", with: "Too much to write here. I'll send a letter"
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
         fill_in "Address line 1", with: "Test"
         fill_in "Address line 2", with: "Test"
         fill_in "City or town", with: "Test"
-        fill_in "County", with: "Test"
+        select "Avon", from: "County"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
         disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)

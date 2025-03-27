@@ -1,4 +1,5 @@
 class PalaceInvite < ApplicationRecord
+  POSSIBLE_TITLES = ["Mr.", "Mrs.", "Miss", "Ms", "Doctor", "Professor", "Sir", "Dame", "The Lord", "The Lady", "Lady"].freeze
   belongs_to :form_answer, optional: true
 
   has_many :palace_attendees, dependent: :destroy, autosave: true

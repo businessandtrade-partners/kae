@@ -1,0 +1,208 @@
+- title "Winners' Resources 2025"
+
+- winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
+- any_mobility_winner = winners.select{ |app| app.mobility? }.any?
+- any_innovation_winner = winners.select{ |app| app.innovation? }.any?
+- any_trade_winner = winners.select{ |app| app.trade? }.any?
+- any_development_winner = winners.select{ |app| app.development? }.any?
+
+div
+  h1.govuk-heading-xl Winners' Resources 2025
+
+  .article-container.article-container-widest
+    article.group role="article"
+      div
+        p.govuk-body Here you can download King's Awards for Enterprise resources for use in your websites and advertising materials. The King's Awards Recipients Manual provides more detailed information on where and how you are allowed to use these resources.
+
+        br
+
+        h2.govuk-heading-m Download The King's Awards Recipients Manual 2025
+
+        .form-download
+          p.govuk-body
+            = link_to "King's Awards Recipients Manual 2025 (PDF, 705.4KB)",
+                      static_s3_asset_path(2025, "King_s Awards Recipients Manual 2025.pdf"),
+                      class: "thumbnail",
+                      target: "_blank", class: 'govuk-link'
+
+        h2.govuk-heading-m Download The King's Awards for Enterprise 2025 Emblems in various formats
+
+        details.govuk-details data-module="govuk-details"
+          summary.govuk-details__summary
+            span.govuk-details__summary-text
+              | CMYK Emblems: EPS format
+          div class="govuk-details__text govuk-!-padding-bottom-0"
+            .form-download
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Emblem CMYK: White (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_emblem_white.eps"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Emblem CMYK (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_emblem_white.eps"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_innovation_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Innovation - White (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_innovation_white.eps"),
+                    target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Innovation (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_innovation.eps"),
+                    target: "_blank", class: 'govuk-link'
+              - if any_trade_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: International Trade - White (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_international_trade_white.eps"),
+                    target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: International Trade (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_international_trade.eps"),
+                    target: "_blank", class: 'govuk-link'
+              - if any_mobility_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Promoting Opportunity - White (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_promoting_opportunity_white.eps"),
+                    target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Promoting Opportunity (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_promoting_opportunity.eps"),
+                    target: "_blank", class: 'govuk-link'
+              - if any_development_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Sustainable Development - White (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_sustainable_development_white.eps"),
+                    target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Sustainable Development (EPS, 6MB)",
+                    static_s3_asset_path(2025, "KAE_logo_2025_CMYK_sustainable_development.eps"),
+                    target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Logo CMYK: White (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_white.eps"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Logo CMYK (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK.eps"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise Logo CMYK: White (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_CMYK_white.eps"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body class="govuk-!-margin-bottom-0"
+                = link_to "King's Awards for Enterprise Logo CMYK (EPS, 5.9MB)",
+                  static_s3_asset_path(2025, "KAE_logo_CMYK.eps"),
+                  target: "_blank", class: 'govuk-link'
+
+        details.govuk-details data-module="govuk-details"
+          summary.govuk-details__summary
+            span.govuk-details__summary-text
+              | CMYK Emblems: JPEG format
+          div class="govuk-details__text govuk-!-padding-bottom-0"
+            .form-download
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Emblem CMYK (JPG, 3.6MB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_CMYK_emblem.jpg"),
+                target: "_blank", class: 'govuk-link'
+              - if any_innovation_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Innovation (JPG, 5.8MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_innovation.jpg"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_trade_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: International Trade (JPG, 6.4MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_international_trade.jpg"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_mobility_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Promoting Opportunity (JPG, 6.5MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_promoting_opportunity.jpg"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_development_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem CMYK: Sustainable Development (JPG, 6.6MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_CMYK_sustainable_development.jpg"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Logo CMYK (JPG, 5.3MB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_CMYK.jpg"),
+                target: "_blank", class: 'govuk-link'
+              p.govuk-body class="govuk-!-margin-bottom-0"
+                = link_to "King's Awards for Enterprise Logo CMYK (JPG, 5.1MB)",
+                static_s3_asset_path(2025, "KAE_logo_CMYK.jpg"),
+                target: "_blank", class: 'govuk-link'
+
+        details.govuk-details data-module="govuk-details"
+          summary.govuk-details__summary
+            span.govuk-details__summary-text
+              | RGB Emblems: PNG format
+          div class="govuk-details__text govuk-!-padding-bottom-0"
+            .form-download
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Emblem RGB: White (PNG, 547KB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_RGB_emblem_white.png"),
+                target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Emblem RGB (PNG, 580KB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_RGB_emblem.png"),
+                target: "_blank", class: 'govuk-link'
+              - if any_innovation_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Innovation - White (PNG, 826KB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_innovation_white.png"),
+                  target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Innovation (PNG, 916KB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_innovation.png"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_trade_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: International Trade - White (PNG, 895KB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_international_trade_white.png"),
+                  target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: International Trade (PNG, 1MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_international_trade.png"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_mobility_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Promoting Opportunity - White (PNG, 910KB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_promoting_opportunity_white.png"),
+                  target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Promoting Opportunity (PNG, 1MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_promoting_opportunity.png"),
+                  target: "_blank", class: 'govuk-link'
+              - if any_development_winner
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Sustainable Development - White (PNG, 929KB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_sustainable_development_white.png"),
+                  target: "_blank", class: 'govuk-link'
+                p.govuk-body
+                  = link_to "King's Awards for Enterprise 2025 Emblem RGB: Sustainable Development (PNG, 1MB)",
+                  static_s3_asset_path(2025, "KAE_logo_2025_RGB_sustainable_development.png"),
+                  target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Logo RGB: White (PNG, 752KB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_RGB_white.png"),
+                target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise 2025 Logo RGB (PNG, 831KB)",
+                static_s3_asset_path(2025, "KAE_logo_2025_RGB.png"),
+                target: "_blank", class: 'govuk-link'
+              p.govuk-body
+                = link_to "King's Awards for Enterprise Logo RGB: White (PNG, 735KB)",
+                static_s3_asset_path(2025, "KAE_logo_RGB_white.png"),
+                target: "_blank", class: 'govuk-link'
+              p.govuk-body class="govuk-!-margin-bottom-0"
+                = link_to "King's Awards for Enterprise Logo RGB (PNG, 812KB)",
+                static_s3_asset_path(2025, "KAE_logo_RGB.png"),
+                target: "_blank", class: 'govuk-link'
+
+        footer
+          nav.pagination.no-border aria-label="Pagination" role="navigation"
+            ul.group
+              li.previous.previous-alternate
+                = link_to dashboard_path, class: 'govuk-button govuk-button-secondary'
+                  span.pagination-label Back

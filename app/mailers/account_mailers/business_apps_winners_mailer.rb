@@ -6,6 +6,8 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
 
   def notify(form_answer_id, collaborator_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
+    invite = form_answer.palace_invite
+    @token = invite.token
     @user = @form_answer.user.decorate
     collaborator = User.find(collaborator_id)
 

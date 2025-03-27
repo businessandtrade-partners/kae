@@ -9,6 +9,8 @@ describe AccountMailers::BusinessAppsWinnersMailer do
   let(:account_holder) { form_answer.user }
   let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
+  let!(:palace_invite) { create :palace_invite, form_answer: form_answer, email: account_holder.email }
+
   let(:mail) {
     AccountMailers::BusinessAppsWinnersMailer.notify(
       form_answer.id,
