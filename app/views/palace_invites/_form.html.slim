@@ -16,7 +16,7 @@ p.govuk-body
           - i += 1
 
           .question-group
-            = ff.input :title, input_html: { class: "small" }, as: :select, collection: PalaceInvite::POSSIBLE_TITLES
+          = ff.input :title, as: :select, collection: PalaceInvite::POSSIBLE_TITLES, input_html: { class: "small" }, include_blank: false
 
           .question-group
             = ff.input :first_name, input_html: { class: "medium" }
@@ -81,7 +81,7 @@ p.govuk-body
                                       label: "Telephone number",
                                       hint: "if known"
           .question-group
-            = ff.input :dietary_requirements, as: :select, input_html: { rows: 5 }, label: "Dietary needs", collection: User::DIETARY_REQUIREMENTS
+            = ff.input :dietary_requirements, as: :select, input_html: { rows: 5, class: "large" }, label: "Dietary needs", collection: User::DIETARY_REQUIREMENTS
 
           .question-group
             label.govuk-label
