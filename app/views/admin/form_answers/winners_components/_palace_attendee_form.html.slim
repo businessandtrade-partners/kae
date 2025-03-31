@@ -11,7 +11,7 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       = f.input :palace_invite_id, as: :hidden
       .row
         .col-md-2
-          = f.input :title, as: :select, collection: User::POSSIBLE_TITLES, label: "Title", input_html: { class: "form-control", id: "palace_attendee_title_#{index}" }
+          = f.input :title, as: :select, collection: PalaceInvite::POSSIBLE_TITLES, label: "Title", input_html: { class: "form-control", id: "palace_attendee_title_#{index}" }
       .row
         .col-md-5
           = f.input :first_name, as: :string, label: "First name", input_html: { class: "form-control", id: "palace_attendee_first_name_#{index}" }
@@ -57,7 +57,7 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :address_3, as: :string, label: "City or town", input_html: { class: "form-control", id: "palace_attendee_address_3__#{index}" }
       .row
         .col-md-8
-          = f.input :address_4, as: :string, label: "County", as: :select, collection: counties, input_html: { class: "form-control", id: "palace_attendee_address_4_#{index}" }
+          = f.input :address_4, as: :string, label: "County", as: :select, collection: palace_invite_counties, input_html: { class: "form-control", id: "palace_attendee_address_4_#{index}" }
       .row
         .col-md-2
           = f.input :postcode, as: :string, label: "Postcode", input_html: { class: "form-control", id: "palace_attendee_postcode_#{index}" }
@@ -65,8 +65,8 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :phone_number, as: :string, label: "Telephone number", input_html: { class: "form-control", id: "palace_attendee_phone_number_#{index}" }
           p.help-block If known
       .row
-        .col-md-12
-          = f.input :dietary_requirements, as: :select, collection: User::DIETARY_REQUIREMENTS, label: "Dietary needs", input_html: { class: "form-control", id: "palace_attendee_dietary_requirements_#{index}", rows: 2 }
+        .col-md-8
+          = f.input :dietary_requirements, as: :select, collection: User::DIETARY_REQUIREMENTS, label: "Dietary needs", input_html: { class: "form-control medium", id: "palace_attendee_dietary_requirements_#{index}", rows: 2 }
       .row
         .col-md-8
           = f.input :disabled_access, as: :radio_buttons, label: "Does the attendee require disabled access?", wrapper_html: { class: "disabled-access-wrapper", id: "palace_attendee_disabled_access_#{index}" }
