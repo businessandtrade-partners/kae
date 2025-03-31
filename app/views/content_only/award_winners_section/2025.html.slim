@@ -20,8 +20,17 @@ div
 
         .form-download
           p.govuk-body
-            = link_to "King's Awards Recipients Manual 2025 (PDF, 705.4KB)",
+            = link_to "King's Awards Recipients' Manual 2025 (PDF, 490KB)",
                       static_s3_asset_path(2025, "King_s Awards Recipients Manual 2025.pdf"),
+                      class: "thumbnail",
+                      target: "_blank", class: 'govuk-link'
+
+        h2.govuk-heading-m Download The King's Awards Template Press Release 2025
+
+        .form-download
+          p.govuk-body
+            = link_to "King's Awards Template Press Release 2025 (PDF, 255KB)",
+                      static_s3_asset_path(2025, "King_s Awards Template Press Release 2025.pdf"),
                       class: "thumbnail",
                       target: "_blank", class: 'govuk-link'
 
