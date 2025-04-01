@@ -2,12 +2,7 @@
 
 - provide(:page_wrapper_class, "page-dashboard")
 
-= render "content_only/info_messages/email_phone_change_notification"
-
-- if Settings.after_current_submission_deadline?
-  = render "content_only/info_messages/award_season_closed"
-- elsif Settings.current_award_year_switched?
-  = render "content_only/info_messages/award_season_opens_soon"
+= render "content_only/info_messages/award_season_opens_soon"
 
 - if Settings.after_current_submission_deadline_start? || past_applications.present?
   h1.govuk-heading-xl
