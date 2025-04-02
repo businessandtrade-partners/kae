@@ -4,10 +4,18 @@ div[class="govuk-notification-banner" role="region" aria-labelledby="govuk-notif
       ' Important
   div[class="govuk-notification-banner__content"]
     = render "content_only/info_messages/new_users_message"
+
+    h3[class="govuk-notification-banner__heading" style="max-width: 100%;"]
+      ' Current Awards
+    p[class="govuk-body" style="max-width: 100%;"]
+      ' The current application period is closed and the Awards are now undergoing final approval. If you were shortlisted, we expect to notify you of the outcome via email in early April. Unsuccessful applicants will also be notified by email in early April and receive assessor feedback via a link to their application account.
+    p[class="govuk-body" style="max-width: 100%;"]
+      ' Award recipients will be announced on 6th May online in The Gazette and on our social media.
+
     h3[class="govuk-notification-banner__heading" style="max-width: 100%;"]
       ' Next round of Awards
     p[class="govuk-body" style="max-width: 100%;"]
-      ' The new round of Awards to be announced next year opens for applications on 6th May.
+      ' The new round of Awards to be announced next year also opens for applications on 6th May.
     p[class="govuk-body" style="max-width: 100%;"]
       ' If you've opted in for notifications, we'll email you a reminder. You can update your notification preferences on your 
       =<> link_to "Contact Preferences", contact_settings_account_path, class: 'govuk-link'
