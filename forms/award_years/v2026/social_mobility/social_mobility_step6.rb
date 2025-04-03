@@ -42,7 +42,7 @@ class AwardYears::V2026::QaeForms
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
-          max_attachments 5
+          max_attachments 3
           links
           description
         end
