@@ -107,7 +107,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.",
+          "This section is structured to enable you to tell your success story - including describing the innovation's development, implementation and impact. This enables the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.",
         ],
       )
     end
@@ -273,8 +273,11 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Estimated figures",
         context: [
-          "If you haven't reached or finalised accounts for your most recent financial year, you can provide estimated figures for now.",
-          "If you are shortlisted, you will have to provide the actual figures that have been verified before the specified November deadline (the exact date will be provided in the shortlisting email). Typically, the verification is done by an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.",
+          "If your financial year ends before the September deadline and verified figures are not yet available, you can submit estimated figures based on your latest financial year.",
+          "If shortlisted, you must provide externally verified figures by mid-November.",
+          "Example: If your year-end is in August and verification will be ready by October or November, you can submit estimated figures.",
+          "If you cannot provide verified figures by November, use the previous year's verified figures.",
+          "Typically, the verification is done by an external accountant who prepares your annual accounts or returns or, in the case of a larger organisation, who conducts your financial audit.",
         ],
       )
     end
