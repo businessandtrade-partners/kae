@@ -107,7 +107,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "This section is structured to enable you to tell your success story of the innovation's development, implementation and impact, enabling the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.",
+          "This section is structured to enable you to tell your success story - including describing the innovation's development, implementation and impact. This enables the assessing team to understand the role innovation plays within your overall business and how this impacts the performance of your business.",
         ],
       )
     end
