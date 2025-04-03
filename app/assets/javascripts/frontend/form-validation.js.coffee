@@ -53,9 +53,9 @@ window.FormValidation =
     input = container.find('input,textarea,select').filter(':visible')
     input_id = input.attr('id')
     error = container.find(".govuk-error-message").first()
-    error.attr("id", "error_for_#{input_id}");
+    error.attr "id", "error_for_#{input_id}"
     error_id = error.attr('id')
-    input.attr("aria-describedby", error_id);
+    input.attr "aria-describedby", error_id
 
   addErrorClass: (container) ->
     container.addClass("govuk-form-group--error")
@@ -145,26 +145,38 @@ window.FormValidation =
     wordLimit = textarea.attr("data-word-max")
     wordLimitWithBuffer = 0
     if wordLimit > 15
-      wordLimitWithBuffer = parseInt(wordLimit * 1.1);
+      wordLimitWithBuffer = parseInt(wordLimit * 1.1)
     else
-      wordLimitWithBuffer = wordLimit;
+      wordLimitWithBuffer = wordLimit
 
     editorInstance = CKEDITOR.instances[textarea.attr("id")]
     if editorInstance?
       editorContent = editorInstance.getData()
-      normalizedContent = editorContent
-        .replace(/<[^>]*>/g, ' ') # Remove HTML tags
-        .replace(/&nbsp;/g, ' ') # Replace non-breaking spaces
-        .replace(/\s+/g, ' ') # Replace multiple spaces with single space
+      
+      # Clean the content
+      cleanContent = editorContent
+        .replace(/<[^>]*>/g, ' ')        # Replace HTML tags with spaces
+        .replace(/&nbsp;/g, ' ')         # Replace &nbsp; with spaces
+        .replace(/\n/g, ' ')             # Replace newlines with spaces
+        # Remove colons that are not part of time expressions (e.g. 12:30)
+        .replace(/(?<!\d)[:]/g, ' ')     
+        # Replace spaces around hyphens with just hyphens to join hyphenated phrases
+        .replace(/\s+[-]\s+/g, '-')      
+        # Join multi-word hyphenated phrases (like face-to-face)
+        .replace(/([A-Za-z]+[-][A-Za-z]+[-][A-Za-z]+)/g, '$1 ')
+        .replace(/\s+/g, ' ')            # Replace multiple spaces with single space
         .trim()
-      wordCount = normalizedContent.split(' ').length
+      
+      # Count words - split by whitespace and filter out empty strings
+      words = cleanContent.split(' ').filter((word) -> word.length > 0)
+      wordCount = words.length
 
       if wordCount > wordLimitWithBuffer
-        @logThis(question, "validateWordLimit", "Word limit of #{wordLimit} exceeded. Word count at #{wordCount}.")
+        @logThis question, "validateWordLimit", "Word limit of #{wordLimit} exceeded. Word count at #{wordCount}."
         if wordLimit > 15
-          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less (as we allow 10% leeway).")
+          @addErrorMessage question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less (as we allow 10% leeway)."
         else
-          @addErrorMessage(question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less.")
+          @addErrorMessage question, "Question #{questionRef} has a word limit of #{wordLimit}. Your answer has to be #{wordLimitWithBuffer} words or less."
 
   validateSubfieldWordLimit: (question) ->
     wordLimit = $(question.context).attr("data-word-max")
