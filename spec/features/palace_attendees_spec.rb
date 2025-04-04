@@ -90,29 +90,18 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
     let(:title) { "Mr." }
     let(:my_first_name) { "MyFirstName" }
-    let(:attendee) do
-      palace_invite.reload.palace_attendees.first
-    end
+    let(:attendee) { palace_invite.reload.palace_attendees.first }
 
     describe "Save" do
       it "should allow to Save palace attendees as a draft without validation" do
         select "Mr.", from: "Title"
         fill_in "First name", with: my_first_name
-
-        expect {
-          click_on "Confirm and submit attendee's details"
-        }.not_to change {
-          palace_invite.reload.submitted
-        }
-
+        expect { click_on "Confirm and submit attendee's details" }.not_to change { palace_invite.reload.submitted }
         expect_to_see "This field cannot be blank"
         expect_to_see_no "Windsor Castle Attendee details have been successfully submitted."
-
         click_on "Save"
-
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
-
         expect_to_see "Windsor Castle Attendee details have been successfully updated."
       end
     end
@@ -125,8 +114,11 @@ So that I provide a full list of attendees for Buckingham Palace reception
         fill_in "Job title/position", with: "Test"
         fill_in "Sector", with: "Test"
         fill_in "Decorations/post-nominals", with: "Test"
-        royal_family_connections = find('input[name="palace_invite[palace_attendees_attributes][0][has_royal_family_connections]"]', match: :first)
-        royal_family_connections.set(true)
+
+        within ".palace_invite_palace_attendees_has_royal_family_connections" do
+          find(:label, text: "Yes").click
+        end
+
         fill_in "If you have any association with Commonwealth countries, please provide details. (If not, leave blank.)", with: "I am head of state for most of them"
         fill_in "If you are a leader or volunteer in a Culture, Community, or Climate initiative, please provide details. (If not, leave blank.)", with: "Too much to write here. I'll send a letter"
         fill_in "Please provide details of your or your organisation's associations with the Royal Family.", with: "I am the son of the Queen"
@@ -136,18 +128,14 @@ So that I provide a full list of attendees for Buckingham Palace reception
         select "Avon", from: "County"
         fill_in "Postcode", with: "Test"
         fill_in "Telephone number", with: "Test"
-        disabled_access = find('input[name="palace_invite[palace_attendees_attributes][0][disabled_access]"]', match: :first)
-        disabled_access.set(true)
 
-        expect {
-          click_on "Confirm and submit attendee's details"
-        }.to change {
-          palace_invite.reload.submitted
-        }
+        within ".palace_invite_palace_attendees_disabled_access" do
+          find(:label, text: "Yes").click
+        end
 
+        expect { click_on "Confirm and submit attendee's details" }.to change { palace_invite.reload.submitted }.from(false).to(true)
         expect(attendee.title).to be_eql(title)
         expect(attendee.first_name).to be_eql(my_first_name)
-
         expect_to_see "Windsor Castle Attendee details have been successfully submitted."
       end
     end

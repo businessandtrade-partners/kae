@@ -169,7 +169,7 @@ group :development, :test do
   gem "rspec-github", require: false
   gem "pry-byebug"
   gem "rails-controller-testing"
-  gem "selenium-webdriver"
+  gem "cuprite"
 end
 
 group :test do
