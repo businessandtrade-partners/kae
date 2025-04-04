@@ -48,6 +48,20 @@ describe VirusScanner do
         result = VirusScanner.scan_file(file_path)
         expect(result).to eq({ malware: false, reason: nil, scan_time: 0.16444095800397918 })
       end
+
+      # context "when the file param is an instance of an Uploader class" do
+      #   let(:attachment) { create(:form_answer_attachment) }
+      #   let(:file) { attachment.file }
+      #   before do
+      #     allow(File).to receive(:open).and_call_original
+      #     allow(temp_file).to receive(:set_encoding).with(Encoding::ASCII_8BIT)
+      #   end
+
+      #   it "processes the file successfully" do
+      #     result = VirusScanner.scan_file(file)
+      #     expect(result).to eq({ malware: false, reason: nil, scan_time: 0.16444095800397918 })
+      #   end
+      # end
     end
 
     context "when the scan is successful and malware is found" do
@@ -101,6 +115,59 @@ describe VirusScanner do
 
       it "raises a ScanError" do
         expect { VirusScanner.scan_file(file_path) }.to raise_error(VirusScanner::ScanError, "Unexpected server error")
+      end
+    end
+
+    context "when an unexpected error occurs" do
+      before do
+        allow(http_response).to receive(:code).and_return("5616")
+        allow(http_response).to receive(:message).and_return("Something bad happened")
+      end
+
+      it "raises a ScanError" do
+        expect { VirusScanner.scan_file(file_path) }.to raise_error(VirusScanner::ScanError, "Unexpected error: 5616 Something bad happened")
+      end
+    end
+  end
+
+  describe ".download_to_tempfile" do
+    context "when the file param is an instance of an Uploader class" do
+      let(:attachment) { create(:form_answer_attachment) }
+
+      it "returns a Tempfile with the content copied" do
+        result = VirusScanner.send(:download_to_tempfile, attachment.file)
+        expect(result.class).to eq Tempfile
+        expect(File.read(result)).to eq File.read(attachment.file.path)
+      end
+    end
+
+    context "when the file param is a regular file" do
+      let(:file) { File.new(Rails.root.join("spec/fixtures/cat.jpg")) }
+
+      it "returns a Tempfile with the content copied" do
+        result = VirusScanner.send(:download_to_tempfile, file)
+        expect(result.class).to eq Tempfile
+        expect(File.read(result)).to eq File.read(file)
+      end
+    end
+
+    context "when the file param responds to file" do
+      let(:file) { OpenStruct.new(file: File.new(Rails.root.join("spec/fixtures/cat.jpg"))) }
+
+      it "returns a Tempfile with the content copied" do
+        result = VirusScanner.send(:download_to_tempfile, file)
+        expect(result.class).to eq Tempfile
+        expect(File.read(result)).to eq File.read(file.file)
+      end
+    end
+
+    context "when the file param responds to path" do
+      let(:file) { OpenStruct.new(path: Rails.root.join("spec/fixtures/cat.jpg")) }
+
+      it "returns a Tempfile with the content copied" do
+        result = VirusScanner.send(:download_to_tempfile, file)
+        expect(result.class).to eq Tempfile
+        expect(File.read(result)).to eq File.read(file.path)
       end
     end
   end
