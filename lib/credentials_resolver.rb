@@ -24,4 +24,29 @@ module CredentialsResolver
     # Construct the database URI
     "#{config["engine"]}://#{config["username"]}:#{config["password"]}@#{config["host"]}:#{config["port"]}/#{config["dbname"]}"
   end
+
+  def tmp_bucket_access_key_id
+    s3_bucket_credentials[:aws_access_key_id]
+  end
+
+  def tmp_bucket_secret_access_key
+    s3_bucket_credentials[:aws_secret_access_key]
+  end
+
+  def clean_bucket_access_key_id
+    s3_bucket_credentials(clean_bucket: true)[:aws_access_key_id]
+  end
+
+  def clean_bucket_secret_access_key
+    s3_bucket_credentials(clean_bucket: true)[:aws_secret_access_key]
+  end
+
+  private
+
+  def s3_bucket_credentials(clean_bucket: false)
+    bucket_name = clean_bucket ?  ENV["AWS_S3_PERMANENT_BUCKET"] : ENV["AWS_S3_TMP_BUCKET"]
+    return if bucket_name.nil?
+
+    JSON.parse(ENV["VCAP_SERVICES"])["aws-s3-bucket"].select { |bucket| bucket["credentials"]["bucket_name"] == bucket_name }.first["credentials"].symbolize_keys
+  end
 end
