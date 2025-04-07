@@ -8,6 +8,18 @@ namespace :form_answers do
     ::ManualUpdaters::SubmitApplication.new(form_answer).run!
   end
 
+  desc "Update FormAnswer#state of all applications for a given award year and state"
+  task :update_state, [:award_year, :current_state, :new_state] => :environment do |t, args|
+    form_answers = FormAnswer.for_year(args.fetch(:award_year)).where(state: args.fetch(:current_state))
+    Rails.logger.info "Updating #{form_answers.count} form_answers from #{args.fetch(:current_state)} to #{args.fetch(:new_state)}"
+
+    form_answers.find_each do |form_answer|
+      form_answer.state_machine.perform_transition(args.fetch(:new_state))
+    end
+  rescue => e
+    Rails.logger.error "Error updating form answers: #{e.message}"
+  end
+
   desc "Populate submitted_at"
   task populate_submitted_at: :environment do
     current_award_year_id = AwardYear.find_by(year: 2017).id
