@@ -15,8 +15,8 @@ class AwardYears::V2026::QaeForms
             </ul>
             <h4 class="govuk-heading-s">Please note:</h3>
             <ul>
+              <li><strong>Essential information must be included within the form itself.</strong> Supplementary materials should only provide supporting content and should not contain key details that are required in your answers.</li>
               <li>For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.</li>
-              <li>Do not use the supporting material as a substitute for providing narrative answers to the questions.</li>
               <li>Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.</li>
             </ul>
             <p>
@@ -33,8 +33,8 @@ class AwardYears::V2026::QaeForms
 
             Please note:
 
+            \u2022 Essential information must be included within the form itself. Supplementary materials should only provide supporting content and should not contain key details that are required in your answers.
             \u2022 For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.
-            \u2022 Do not use the supporting material as a substitute for providing narrative answers to the questions.
             \u2022 Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
           )
           hint "What are the accepted file formats?", %(
@@ -42,7 +42,7 @@ class AwardYears::V2026::QaeForms
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
-          max_attachments 5
+          max_attachments 3
           links
           description
         end
