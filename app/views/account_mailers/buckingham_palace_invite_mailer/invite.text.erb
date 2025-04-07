@@ -18,7 +18,7 @@ I understand that this is a very exciting time for you personally. However, plea
 
 There is a strict embargo preventing public announcement or publication of any Awards information until <%= @end_of_embargo.try(:strftime, "#{@end_of_embargo_time} on %-d %B %Y") %>. You must not make any announcement about your Award, either to your employees or those outside your organisation, before <%= @end_of_embargo.try :strftime, "%-d %B" %>.
 
-#We do encourage you to privately make arrangements now for your announcement to go live on <%= @end_of_embargo.try(:strftime, "%-d %B %Y from #{@end_of_embargo_time}") %>.
+#We do encourage you to privately make arrangements now for your announcement to go live from <%= @end_of_embargo.try(:strftime, "#{@end_of_embargo_time} on %-d %B %Y") %>.
 
 #Terms of the Embargo
 
@@ -59,7 +59,7 @@ Please ensure the address details are those of the company representative being 
 
 Details such as dress code, directions, security and accessibility are provided on the online form and in the formal invitation which The Royal Household will send approximately 3 weeks prior to the event.
 
-#To be Aware
+#TO BE AWARE
 
 #The King's Awards Recipients Manual
 
