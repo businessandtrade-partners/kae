@@ -273,7 +273,7 @@ class AwardYears::V2026::QaeForms
             )
           end
 
-          date_max AwardYear.start_trading_since(2)
+          date_max -> { AwardYear.start_trading_since(2) }
         end
 
         textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
