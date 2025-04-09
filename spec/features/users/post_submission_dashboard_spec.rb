@@ -15,6 +15,7 @@ describe "User sees the post submission dashboard" do
       visit dashboard_path
       expect(page).to have_content "Edit application"
       expect(page).to have_css("h2", text: "Current Applications")
+      expect(page).to have_content("The Awards application period is now open")
 
       settings.destroy
       settings = create(:settings, :expired_submission_deadlines, award_year_id: AwardYear.current.id)
@@ -28,6 +29,7 @@ describe "User sees the post submission dashboard" do
         trigger_at: DateTime.now - 1.year,
       )
       visit dashboard_path
+      expect(page).to have_content("The current application period is closed and the Awards are now undergoing final approval.")
 
       form_answer.update_column(:state, "awarded")
       visit dashboard_path
@@ -39,6 +41,7 @@ describe "User sees the post submission dashboard" do
       )
 
       visit dashboard_path
+      expect(page).to have_content("You should have received an email from us notifying you of the outcome of your application.")
       expect(page).to have_content("Congratulations on winning a King's Award for Enterprise")
       expect(page).to have_content("You will be notified when your press book notes are ready.")
 
@@ -56,6 +59,7 @@ describe "User sees the post submission dashboard" do
       )
 
       visit dashboard_path
+      expect(page).to have_content("You should have received an email from us notifying you of the outcome of your application.")
       expect(page).to have_content("Your following application was unsuccessful.")
     end
   end

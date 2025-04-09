@@ -2,11 +2,11 @@
 
 - provide(:page_wrapper_class, "page-dashboard")
 
-- if Settings.after_shortlisting_stage?
-  = render "content_only/info_messages/award_season_shortlisting"
-- elsif Settings.winners_stage?
+- if Settings.winners_stage?
   = render "content_only/info_messages/award_season_closed"
-- elsif submission_started?
+- elsif Settings.after_shortlisting_stage?
+  = render "content_only/info_messages/award_season_shortlisting"
+- elsif submission_started? && !submission_ended?
   = render "content_only/info_messages/award_season_open"
 - elsif Settings.current_award_year_switched?
   = render "content_only/info_messages/award_season_closed"
