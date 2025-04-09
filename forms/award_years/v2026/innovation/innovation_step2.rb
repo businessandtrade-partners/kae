@@ -137,7 +137,7 @@ class AwardYears::V2026::QaeForms
             )
           end
 
-          date_max AwardYear.start_trading_since(2)
+          date_max -> { AwardYear.start_trading_since(2) }
         end
 
         address :organization_address, "Trading address of your organisation." do
