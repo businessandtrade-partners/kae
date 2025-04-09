@@ -26,22 +26,24 @@ module CredentialsResolver
   end
 
   def tmp_bucket_access_key_id
-    s3_bucket_credentials(ENV["AWS_S3_TMP_BUCKET"])[:aws_access_key_id]
+    s3_bucket_credentials(ENV["AWS_S3_TMP_BUCKET"]).fetch(:aws_access_key_id, nil)
   end
 
   def tmp_bucket_secret_access_key
-    s3_bucket_credentials(ENV["AWS_S3_TMP_BUCKET"])[:aws_secret_access_key]
+    s3_bucket_credentials(ENV["AWS_S3_TMP_BUCKET"]).fetch(:aws_secret_access_key, nil)
   end
 
   def clean_bucket_access_key_id
-    s3_bucket_credentials(ENV["AWS_S3_PERMANENT_BUCKET"])[:aws_access_key_id]
+    s3_bucket_credentials(ENV["AWS_S3_PERMANENT_BUCKET"]).fetch(:aws_access_key_id, nil)
   end
 
   def clean_bucket_secret_access_key
-    s3_bucket_credentials(ENV["AWS_S3_PERMANENT_BUCKET"])[:aws_secret_access_key]
+    s3_bucket_credentials(ENV["AWS_S3_PERMANENT_BUCKET"]).fetch(:aws_secret_access_key, nil)
   end
 
   def s3_bucket_credentials(bucket_name)
+    return {} if ENV["VCAP_SERVICES"].blank?
+
     JSON.parse(ENV["VCAP_SERVICES"])["aws-s3-bucket"].find { |bucket| bucket["credentials"]["bucket_name"] == bucket_name }["credentials"].symbolize_keys
   end
 end
