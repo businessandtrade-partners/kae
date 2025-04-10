@@ -41,6 +41,8 @@ module CredentialsResolver
     s3_bucket_credentials(ENV["AWS_S3_PERMANENT_BUCKET"])[:aws_secret_access_key]
   end
 
+  private
+
   def s3_bucket_credentials(bucket_name)
     JSON.parse(ENV["VCAP_SERVICES"])["aws-s3-bucket"].find { |bucket| bucket["credentials"]["bucket_name"] == bucket_name }["credentials"].symbolize_keys
   end
