@@ -44,12 +44,6 @@ module CredentialsResolver
   def s3_bucket_credentials(bucket_name)
     return {} if ENV["VCAP_SERVICES"].blank?
 
-    buckets = JSON.parse(ENV["VCAP_SERVICES"])["aws-s3-bucket"]
-    return {} if buckets.empty?
-
-    bucket = buckets.find { |bucket| bucket["credentials"]["bucket_name"] == bucket_name }
-    return {} if bucket.nil?
-
-    bucket["credentials"].symbolize_keys
+    JSON.parse(ENV["VCAP_SERVICES"])["aws-s3-bucket"].find { |bucket| bucket["credentials"]["bucket_name"] == bucket_name }["credentials"].symbolize_keys
   end
 end
