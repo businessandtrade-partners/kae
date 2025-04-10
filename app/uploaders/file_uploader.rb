@@ -5,7 +5,7 @@ class FileUploader < CarrierWave::Uploader::Base
   storage :custom
 
   def store_dir
-    "uploads/#{base_dir}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def read
@@ -28,15 +28,11 @@ class FileUploader < CarrierWave::Uploader::Base
     clean? ? ENV["AWS_S3_PERMANENT_BUCKET"] : ENV["AWS_S3_TMP_BUCKET"]
   end
 
-  def permanent_path
+  def permanent_path # only for local file usage
     path.sub("tmp", "permanent")
   end
 
   private
-
-  def base_dir
-    clean? ? "permanent" : "tmp"
-  end
 
   def clean?
     model.respond_to?(:clean?) && model.clean?
