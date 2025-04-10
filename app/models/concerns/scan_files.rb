@@ -33,13 +33,13 @@ module ScanFiles
   def move_to_permanent_s3_bucket(file)
     tmp_bucket_s3_client = Aws::S3::Client.new({
       region: ENV["AWS_REGION"],
-      access_key_id: CredentialsResolver.tmp_bucket_access_key_id,
-      secret_access_key: CredentialsResolver.tmp_bucket_secret_access_key,
+      access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
     })
     clean_bucket_s3_client = Aws::S3::Client.new({
       region: ENV["AWS_REGION"],
-      access_key_id: CredentialsResolver.clean_bucket_access_key_id,
-      secret_access_key: CredentialsResolver.clean_bucket_secret_access_key,
+      access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
+      secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
     })
 
     object_to_copy = tmp_bucket_s3_client.get_object(
