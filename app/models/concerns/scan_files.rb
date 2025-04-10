@@ -50,7 +50,7 @@ module ScanFiles
     clean_bucket_s3_client.put_object(
       bucket: ENV["AWS_S3_PERMANENT_BUCKET"],
       body: object_to_copy.body.read,
-      key: file.permanent_path,
+      key: file.path,
     )
 
     tmp_bucket_s3_client.delete_object(
