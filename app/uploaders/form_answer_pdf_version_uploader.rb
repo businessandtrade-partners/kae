@@ -14,6 +14,10 @@ class FormAnswerPdfVersionUploader < CarrierWave::Uploader::Base
     end
   end
 
+  def url
+    Aws::S3::Presigner.new.presigned_request(:get_object, bucket: fog_directory, key: store_path).first
+  end
+
   def permanent_storage
     @permanent_storage ||= CarrierWave::Storage::Fog.new(self)
   end
