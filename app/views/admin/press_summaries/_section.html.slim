@@ -12,7 +12,7 @@
        br
        | This gets downloaded into a csv and most word processing tools add non-standard characters, leaving the information illegible.
     .form-value.no-js-update
-      p = press_summary.body.presence || content_tag(:i, "No Press Book Notes has been added yet")
+      p = simple_format(press_summary.body.presence) || content_tag(:i, "No Press Book Notes has been added yet")
     .input.form-group
       = f.input :body,
                 as: :text,
@@ -48,7 +48,7 @@
             ' Comments by Applicant
           p
             - if press_summary.comment.present?
-              = press_summary.comment
+              = simple_format(press_summary.comment)
             - else
               ' No comment by applicant
 
