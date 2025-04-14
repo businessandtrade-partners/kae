@@ -23,19 +23,6 @@ class Eligibility::Development < Eligibility
               <p class='govuk-hint'>If your organisation is based in the Channel Islands or Isle of Man, you should count only the employees who are located there (do not count employees who are in the UK).</p>
             )
 
-  property :sustainable_development,
-    boolean: true,
-    label: "Can you demonstrate outstanding achievement in sustainable development for at least the last two years?",
-    accept: :true,
-    hint: %(
-              <p class='govuk-hint'>
-                You may find it helpful to familiarise yourself with the <a class='govuk-link' target='_blank' href='https://www.un.org/sustainabledevelopment/sustainable-development-goals/.'>United Nations 17 Sustainable Development Goals (UN SDGs).</a>
-              </p>
-              <p class='govuk-hint'>
-                You will not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development interventions.
-              </p>
-            )
-
   property :adheres_to_sustainable_principles,
     boolean: true,
     label: "Can you demonstrate that the organisation as a whole adheres to sustainable practices?",
