@@ -28,7 +28,6 @@ RSpec.describe Eligibility::Development, type: :model do
 
     it "is eligible when all questions are answered correctly" do
       eligibility.able_to_provide_actual_figures = "yes"
-      eligibility.has_management_and_two_employees = "yes"
       eligibility.adheres_to_sustainable_principles = "yes"
       expect(eligibility).to be_eligible
     end
