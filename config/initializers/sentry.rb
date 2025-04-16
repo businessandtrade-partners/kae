@@ -4,7 +4,7 @@ Sentry.init do |config|
   config.breadcrumbs_logger = [:active_support_logger]
   config.dsn = ENV["SENTRY_DSN"]
   config.environment = ENV["SENTRY_ENV"]
-  config.traces_sample_rate = 1.0
+  config.enable_tracing = true
   config.release = ENV["APP_REVISION"]
   filter = ActiveSupport::ParameterFilter.new(Rails.application.config.filter_parameters)
   config.before_send = lambda do |event, hint|
