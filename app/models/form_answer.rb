@@ -190,6 +190,7 @@ class FormAnswer < ApplicationRecord
   scope :require_vocf, -> { where(award_type: %w[trade innovation]) }
   scope :vocf_free, -> { where(award_type: %w[mobility development]) }
   scope :provided_estimates, -> { where("document #>> '{product_estimated_figures}' = 'yes'") }
+  scope :have_award_decision, -> { where(state: ["awarded", "not_awarded"]) }
 
   # callbacks
   before_save :set_award_year, unless: :award_year
