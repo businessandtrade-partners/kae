@@ -29,8 +29,7 @@ module Reports::CsvHelper
         end
 
         csv << mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
+          unescape_and_sanitize(f.call_method(m[:method]))
         end
       end
     end
@@ -44,8 +43,7 @@ module Reports::CsvHelper
         f = Reports::FormAnswer.new(fa, limited_access)
 
         row = mapping.map do |m|
-          raw = f.call_method(m[:method])
-          Utils::String.sanitize(raw)
+          unescape_and_sanitize(f.call_method(m[:method]))
         end
 
         yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)

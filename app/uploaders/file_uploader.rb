@@ -54,8 +54,7 @@ class FileUploader < CarrierWave::Uploader::Base
   def tmp_bucket_credentials
     {
       provider: "AWS",
-      aws_access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
+      use_iam_profile: true,
       region: ENV["AWS_REGION"],
     }
   end
@@ -63,8 +62,7 @@ class FileUploader < CarrierWave::Uploader::Base
   def clean_bucket_credentials
     {
       provider: "AWS",
-      aws_access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
+      use_iam_profile: true,
       region: ENV["AWS_REGION"],
     }
   end
