@@ -52,18 +52,36 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def tmp_bucket_credentials
-    {
-      provider: "AWS",
-      use_iam_profile: true,
-      region: ENV["AWS_REGION"],
-    }
+    if ENV["COPILOT_ENVIRONMENT_NAME"].present?
+      {
+        provider: "AWS",
+        use_iam_profile: true,
+        region: ENV["AWS_REGION"],
+      }
+    else
+      {
+        provider: "AWS",
+        region: ENV["AWS_REGION"],
+        aws_access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
+      }
+    end
   end
 
   def clean_bucket_credentials
-    {
-      provider: "AWS",
-      use_iam_profile: true,
-      region: ENV["AWS_REGION"],
-    }
+    if ENV["COPILOT_ENVIRONMENT_NAME"].present?
+      {
+        provider: "AWS",
+        use_iam_profile: true,
+        region: ENV["AWS_REGION"],
+      }
+    else
+      {
+        provider: "AWS",
+        region: ENV["AWS_REGION"],
+        aws_access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
+      }
+    end
   end
 end
