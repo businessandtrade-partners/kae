@@ -4,11 +4,9 @@ div[class="govuk-notification-banner" role="region" aria-labelledby="govuk-notif
       ' Important
   div[class="govuk-notification-banner__content"]
     = render "content_only/info_messages/new_users_message"
-    h3[class="govuk-notification-banner__heading" style="max-width: 100%;"]
-      ' Next round of Awards
     p[class="govuk-body" style="max-width: 100%;"]
-      ' The new round of Awards to be announced next year opens for applications on 6th May.
+      ' The Awards application period is now open and will close on 9th September. If we can be of any help during the application period please contact the helpline by email or phone using the details below:
     p[class="govuk-body" style="max-width: 100%;"]
-      ' If you've opted in for notifications, we'll email you a reminder. You can update your notification preferences on your 
-      =<> link_to "Contact Preferences", contact_settings_account_path, class: 'govuk-link'
-      ' page.
+      = link_to "kingsawards@businessandtrade.gov.uk", "mailto: kingsawards@businessandtrade.gov.uk", class: 'govuk-link'
+      br
+      ' 020 4551 0081
