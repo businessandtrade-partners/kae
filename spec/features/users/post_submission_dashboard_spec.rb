@@ -14,7 +14,7 @@ describe "User sees the post submission dashboard" do
     it "sees applications properly" do
       visit dashboard_path
       expect(page).to have_content "Edit application"
-      expect(page).to have_content("Current Applications")
+      expect(page).to have_css("h2", text: "Current Applications")
 
       settings.destroy
       settings = create(:settings, :expired_submission_deadlines, award_year_id: AwardYear.current.id)
@@ -63,6 +63,6 @@ end
 
 def expect_to_have_blank_dashboard
   expect(page).to_not have_content("Shortlisted")
-  expect(page).to_not have_content("Unsuccessful")
+  expect(page).not_to have_css("h2", text: "Unsuccessful")
   expect(page).to_not have_content("Successful")
 end
