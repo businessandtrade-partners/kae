@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "start": "echo start",
+    "build": "echo build"
+  },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/stimulus-webpack-helpers": "^1.0.1",
@@ -29,5 +33,8 @@
   "browserslist": [
     "defaults"
   ],
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "engines": {
+    "node": "20"
+  }
 }
