@@ -352,7 +352,7 @@ class AwardYears::V2026::QaeForms
             </p>
           )
           rows 4
-          words_max 350
+          words_max 300
         end
 
         textarea :innovation_overcomes_issues, "Describe any challenges you encountered in developing your innovation and how you overcame them." do
@@ -366,7 +366,7 @@ class AwardYears::V2026::QaeForms
             </p>
           )
           rows 5
-          words_max 500
+          words_max 450
         end
 
         textarea :innovation_strategies, "Explain the market opportunities and what strategies you used to penetrate the market." do
@@ -394,7 +394,7 @@ class AwardYears::V2026::QaeForms
             </p>
           )
           rows 3
-          words_max 250
+          words_max 200
         end
 
         textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
