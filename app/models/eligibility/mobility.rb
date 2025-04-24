@@ -13,14 +13,6 @@ class Eligibility::Mobility < Eligibility
                 If you haven't reached your most recent year-end, you can provide estimated figures in the interim.
               </p>
             )
-  property :full_time_employees,
-    boolean: true,
-    label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your two most recent financial years?",
-    accept: :true,
-    hint: %(
-              <p class='govuk-hint'>You can calculate the number of full-time employees at the year-end, or the average for each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
-              <p class='govuk-hint'>If your organisation is based in the Channel Islands or Isle of Man, you should count only the employees who are located there (do not count employees who are in the UK).</p>
-            )
 
   property :promoting_opportunity_involvement,
     values: %w[initiative subsidiary organisation_joint_application organisation_core_activity],
