@@ -397,10 +397,19 @@ class AwardYears::V2026::QaeForms
           words_max 200
         end
 
-        textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
+        textarea :estimated_market_size_and_share, "Please provide your best estimate of the size of the market you are selling your innovation into, and your estimated share of that market." do
           sub_section :innovation_timeline_header
           classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.9"
+          required
+          rows 2
+          words_max 200
+        end
+
+        textarea :innovation_protect_market_position_details, "How might you protect the market position you have created?" do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "C 2.10"
           required
           context %(
             <p>
@@ -414,7 +423,7 @@ class AwardYears::V2026::QaeForms
         textarea :innovation_additional_comments, "Additional comments (optional)" do
           sub_section :innovation_timeline_header
           classes "sub-question word-max-strict text-words-max"
-          sub_ref "C 2.10"
+          sub_ref "C 2.11"
           context %(
             <p>
               Use this box to explain if your innovation was launched by someone else or any other unusual circumstances surrounding your innovation.
