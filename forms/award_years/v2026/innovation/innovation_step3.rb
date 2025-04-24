@@ -276,29 +276,15 @@ class AwardYears::V2026::QaeForms
           date_max -> { AwardYear.start_trading_since(2) }
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
+        textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
           sub_section :innovation_timeline_header
           classes "sub-question word-max-strict text-words-max"
           sub_ref "C 2.3"
           required
           context %(
-            <p>
-              What was the need or opportunity that prompted you to initiate your innovation project? What research did you do? How did you decide it was an opportunity worth working on? Did the innovation happen by chance? Was it consumer-led, or did it arise out of research and development?
-            </p>
-          )
-          rows 4
-          words_max 400
-        end
-
-        textarea :innovation_desc_long, "Describe your innovation and why it is innovative." do
-          sub_section :innovation_timeline_header
-          classes "sub-question word-max-strict text-words-max"
-          sub_ref "C 2.4"
-          required
-          context %(
             <ol>
               <li>
-                Describe what it is, how it works, what it does.
+                Describe what it is, how it works, what it does. Explain what it is your innovation addresses.
               </li>
               <li>
                 Explain how your innovation differs from what came before and how it is an improvement.
@@ -319,7 +305,7 @@ class AwardYears::V2026::QaeForms
           )
           pdf_context %(
             <p>
-              1. Describe what it is, how it works, what it does.
+              1. Describe what it is, how it works, what it does. Explain what it is your innovation addresses.
             </p>
             <p>
               2. Explain how your innovation differs from what came before and how it is an improvement.
@@ -338,7 +324,21 @@ class AwardYears::V2026::QaeForms
             </p>
           )
           rows 5
-          words_max 800
+          words_max 750
+        end
+
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation and how you identified a gap in the market." do
+          sub_section :innovation_timeline_header
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "C 2.4"
+          required
+          context %(
+            <p>
+              What was the need or opportunity that prompted you to initiate your innovation project? What research did you do? How did you decide it was an opportunity worth working on? Did the innovation happen by chance? Was it consumer-led, or did it arise out of research and development?
+            </p>
+          )
+          rows 4
+          words_max 350
         end
 
         textarea :innovation_selection_details, "How did you select this innovation as the one to satisfy the gap in the market?" do
