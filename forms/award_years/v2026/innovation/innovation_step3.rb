@@ -444,7 +444,7 @@ class AwardYears::V2026::QaeForms
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
             </p>
             <p class="govuk-body">
-              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
+              You can add testimonials within the answer using quotation marks. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F as one document. If you do so, please reference it in your answer.
             </p>
           )
           pdf_context_with_header_blocks [
@@ -453,7 +453,7 @@ class AwardYears::V2026::QaeForms
 
               Please focus on providing descriptions and examples rather than financial data. Adding testimonials and quantified data to support your statements will strengthen your application.
 
-              You can add testimonials using quotation marks within the answer. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F - if you do so, please reference it in your answer.
+              You can add testimonials within the answer using quotation marks. Alternatively, if you have them in a letter or email format, consider joining them into one PDF and uploading it in section F as one document. If you do so, please reference it in your answer.
             )],
           ]
         end
