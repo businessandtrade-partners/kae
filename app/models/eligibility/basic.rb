@@ -18,6 +18,12 @@ class Eligibility::Basic < Eligibility
     label: "What kind of organisation is it?",
     accept: :not_nil
 
+  property :has_management_and_two_employees,
+    label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your two most recent financial years? (If you are a sole trader you do not count as an employee.)",
+    accept: :true,
+    boolean: true,
+    hint_partial: "form_award_eligibilities/basic_questions/has_management_and_two_employees"
+
   property :industry,
     values: %w[product_business service_business either_business],
     label: "Is your business mainly a:",
