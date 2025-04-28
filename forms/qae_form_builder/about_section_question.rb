@@ -125,8 +125,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "Read this section before planning the answers. Try not to repeat points: instead, you can say that you are referring to a previous answer to another question and include that question number.",
-          "Avoid using technical jargon.",
+          "When completing this section, assessors recognise that some questions may be answered in more detail than others, and therefore, free text is provided with flexibility in mind. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector in which you operate. All organisations should provide as much relevant information as possible, using evidence and examples to support responses.",
         ],
       )
     end
