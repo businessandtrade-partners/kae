@@ -93,7 +93,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Small organisations",
         context: [
-          "The King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.",
+          "The King's Awards for Enterprise is committed to acknowledging the efforts of eligible organisations of all sizes. If you are a small organisation, please do not be intimidated by the questions that are less relevant to you – answer all questions to the degree that you can and provide evidence of impact. During the assessment of your application, the size and sector of your organisation will be taken into consideration.",
         ],
       )
     end
