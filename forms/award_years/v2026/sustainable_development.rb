@@ -16,8 +16,8 @@ class AwardYears::V2026::QaeForms
           "Company information",
           &AwardYears::V2026::QaeForms.development_step2
 
-        step "Your Sustainable Development",
-          "Your Sustainable Development",
+        step "Your Sustainability",
+          "Your Sustainability",
           &AwardYears::V2026::QaeForms.development_step3
 
         step "Commercial Performance",

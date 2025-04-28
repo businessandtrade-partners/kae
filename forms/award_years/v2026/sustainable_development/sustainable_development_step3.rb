@@ -6,7 +6,7 @@ class AwardYears::V2026::QaeForms
           section "your_sustainable_development"
         end
 
-        textarea :vision_and_strategy, "Vision and strategy" do
+        textarea :vision_and_strategy, "Vision and Strategy" do
           classes "word-max-strict text-words-max"
           ref "C 1"
           required

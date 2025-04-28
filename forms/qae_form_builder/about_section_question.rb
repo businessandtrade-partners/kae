@@ -39,7 +39,7 @@ class QaeFormBuilder
       when "your_international_trade"
         [about_section_C_international_trade, small_organisations, word_limits, technical_language, supplementary_materials]
       when "your_sustainable_development"
-        [about_section_C_sustainable_development, small_organisations, un_sdgs, supplementary_materials_development]
+        [about_section_C_sustainable_development, small_organisations, supplementary_materials_development]
       when "innovation_commercial_performance"
         [about_section_D_innovation, financial_periods_innovation, estimated_figures]
       when "trade_commercial_performance"
@@ -125,7 +125,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "When completing this section, assessors recognise that some questions may be answered in more detail than others, and therefore, free text is provided with flexibility in mind. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector in which you operate. All organisations should provide as much relevant information as possible, using evidence and examples to support responses.",
+          "When completing this form, it is recognised that some sections and questions may be answered in more detail than others. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector you operate in. Provide as much relevant information as possible, using evidence and examples to support your responses.",
         ],
       )
     end
