@@ -125,7 +125,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "When completing this form, it is recognised that some sections and questions may be answered in more detail than others. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector you operate in. Provide as much relevant information as possible, using evidence and examples to support your responses.",
+          "When completing this section, assessors recognise that some questions may be answered in more detail than others, and therefore, free text is provided with flexibility in mind. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector in which you operate. All organisations should provide as much relevant information as possible, using evidence and examples to support responses.",
         ],
       )
     end

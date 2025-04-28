@@ -379,8 +379,8 @@ class AwardYears::V2026::QaeForms
               Who are your target customers? How did you communicate your innovation to them? Were they existing customers? Is this a new market sector? What did you have to do differently to market the innovation?
             </p>
           )
-          rows 4
-          words_max 350
+          rows 3
+          words_max 250
         end
 
         textarea :innovation_competitors, "Who offers products, services or business models that compete with yours?" do
