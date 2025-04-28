@@ -174,8 +174,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
+          "You may add up to three short and relevant materials (documents or online links) in Section F to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
@@ -184,8 +183,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
+          "You may add up to three short and relevant materials (documents or online links) in Section E to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
