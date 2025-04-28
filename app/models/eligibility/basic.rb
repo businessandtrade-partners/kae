@@ -19,7 +19,7 @@ class Eligibility::Basic < Eligibility
     accept: :not_nil
 
   property :has_management_and_two_employees,
-    label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) in your two most recent financial years? (If you are a sole trader you do not count as an employee.)",
+    label: "Did your organisation have at least two full-time UK employees or full-time equivalent employees (FTEs) during the period covered by the figures or data you will use in your application? (If you are a sole trader, you must have two additional full-time employees.)",
     accept: :true,
     boolean: true,
     hint_partial: "form_award_eligibilities/basic_questions/has_management_and_two_employees"
