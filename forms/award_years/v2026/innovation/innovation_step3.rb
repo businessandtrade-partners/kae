@@ -376,7 +376,7 @@ class AwardYears::V2026::QaeForms
           required
           context %(
             <p>
-              Who are your target customers? How did you communicate your innovation to them? Were they existing customers? Is this a new market sector? What did you have to do differently to market the innovation? What is the size of the market that you can potentially reach?
+              Who are your target customers? How did you communicate your innovation to them? Were they existing customers? Is this a new market sector? What did you have to do differently to market the innovation?
             </p>
           )
           rows 4
