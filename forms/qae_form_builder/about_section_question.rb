@@ -93,7 +93,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Small organisations",
         context: [
-          "The King's Awards for Enterprise is committed to acknowledging the efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer all questions to the degree you can.",
+          "The King's Awards for Enterprise is committed to acknowledging the efforts of eligible organisations of all sizes. If you are a small organisation, please do not be intimidated by the questions that are less relevant to you – answer all questions to the degree that you can and provide evidence of impact. During the assessment of your application, the size and sector of your organisation will be taken into consideration.",
         ],
       )
     end
@@ -125,8 +125,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "Read this section before planning the answers. Try not to repeat points: instead, you can say that you are referring to a previous answer to another question and include that question number.",
-          "Avoid using technical jargon.",
+          "When completing this section, assessors recognise that some questions may be answered in more detail than others, and therefore, free text is provided with flexibility in mind. The extent of your answer depends on your organisation's stage in its sustainability journey and the material impacts associated with the sector in which you operate. All organisations should provide as much relevant information as possible, using evidence and examples to support responses.",
         ],
       )
     end
@@ -175,8 +174,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "To support your answers in this section, you can add up to three materials (documents or online links) in Section F. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
+          "You may add up to three short and relevant materials (documents or online links) in Section F to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
@@ -185,8 +183,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "To support your answers in this section, you can add up to three materials (documents or online links) in Section E. For assessors to review them, you must reference them by their names in your answers.",
-          "Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant. Do not use them as a substitute for providing narrative answers to the questions.",
+          "You may add up to three short and relevant materials (documents or online links) in Section E to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
