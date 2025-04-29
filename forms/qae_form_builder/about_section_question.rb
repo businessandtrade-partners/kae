@@ -40,6 +40,8 @@ class QaeFormBuilder
         [about_section_C_international_trade, small_organisations, word_limits, technical_language, supplementary_materials]
       when "your_sustainable_development"
         [about_section_C_sustainable_development, small_organisations, supplementary_materials_development]
+      when "your_social_mobility"
+        [about_section_C_social_mobility, award_target, social_mobility_definition, disadvantaged_groups, evidence, supplementary_materials, small_organisations, small_initiatives, technical_language]
       when "innovation_commercial_performance"
         [about_section_D_innovation, financial_periods_innovation, estimated_figures]
       when "trade_commercial_performance"
@@ -130,6 +132,14 @@ class QaeFormBuilder
       )
     end
 
+    def about_section_C_social_mobility
+      OpenStruct.new(
+        header: "About section C",
+        context: [
+          "This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility for at least two years (a minimum of 24 months)."
+        ],
+      )
+    end
     # Covid impact
     def covid_impact
       OpenStruct.new(
@@ -200,6 +210,81 @@ class QaeFormBuilder
       )
     end
 
+    def award_target
+      OpenStruct.new(
+        header: "This award is aimed at:",
+        context: [
+          "This award aims to recognise those organisations engaged in an enterprise whose core activity is not social mobility but have initiatives that support it.",
+          "Commercial organisations, not-for-profits, social enterprises, and charities are welcome to apply.",
+          'The initiative should be structured and designed to target and support people from disadvantaged backgrounds as defined in the list under "Disadvantaged groups" further down in this section.',
+          "Please note, to be considered for the award, your initiative must go well beyond compliance with the law in relation to disadvantaged groups.",
+          "An initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy, or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiative.",
+          "Your answers will provide us with evidence of how this benefits the participants, your organisation and wider society. Explain the reasons why you implemented the initiative and the outcomes it has achieved.",
+          "If you have more than one initiative, you can include some or all of them in your answers as long as you are consistent throughout.",
+        ],
+      )
+    end
+
+    def social_mobility_definition
+      OpenStruct.new(
+        header: "Social mobility definition",
+        context: [
+          "Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.",
+          "• Socio-economic background is a set of social and economic circumstances from which a person has come.",
+          "• Socio-economic status is a person's current social and economic circumstances."
+        ]
+      )
+    end
+
+    def disadvantaged_groups
+      OpenStruct.new(
+        header: "Disadvantaged groups",
+        context: [
+          "For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the following disadvantaged backgrounds:",
+          "• Black, Asian and minority ethnic people, including Gypsy and Traveller people;",
+          "• Asylum seekers and refugees or children of refugees;",
+          "• Young people (over 16 years old) with English as a second language;",
+          "• Long-term unemployed or people who grew up in workless households;",
+          "• People on low incomes;",
+          "• Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;",
+          "• People who received free school meals or if there are children in the person's current household who receive free school meals;",
+          "• Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;",
+          "• Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;",
+          "• Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;",
+          "• People who attended schools with lower-than-average attainment or if there are children in the person's current household who attend school with lower-than-average attainment;",
+          "• People whose parents' or guardians' highest level of qualifications by the time the person was 18 was a secondary school;",
+          "• People with a physical or mental disability that has a substantial and adverse long-term effect on a person's ability to do normal daily activities;",
+          "• People recovering or who have recovered from addiction;",
+          "• Survivors of domestic violence;",
+          "• Military veterans;",
+          "• Ex-offenders;",
+          "• Families of prisoners;",
+          "This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.",
+          "Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement."
+        ]
+      )
+    end
+
+    def evidence
+      OpenStruct.new(
+        header: "Evidence",
+        context: [
+          "Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.",
+          "The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.",
+          "Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise."
+        ]
+      )
+    end
+
+    def small_initiatives
+      OpenStruct.new(
+        header: "Small initiatives",
+        context: [
+          "The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.",
+          "If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals."
+        ]
+      )
+    end
     ######## Section C ########
 
     ######## Section D ########
@@ -325,7 +410,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Required figures",
         context: [
-          "If you have selected “Outstanding Short-Term Growth” in D1, you will only need to provide information for the last three years.",
+          'If you have selected "Outstanding Short-Term Growth" in D1, you will only need to provide information for the last three years.',
           "If you haven't reached your latest year-end, please use estimates to complete these questions.",
         ],
       )
