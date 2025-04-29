@@ -7,7 +7,7 @@ class Eligibility::Development < Eligibility
     accept: :true,
     hint: %(
       <p class='govuk-hint'>
-        Please note, we are assessing the whole organisation, not just particular interventions. At a minimum, we expect all winning organisations to have good practices around climate change.
+        Please note, we are assessing the whole organisation, not just particular initiatives. As a minimum, we expect all winning organisations to have good practices around climate change/working towards Net Zero and there are further questions on this in the application form itself.
       </p>
     )
 
