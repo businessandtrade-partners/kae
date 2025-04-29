@@ -2,7 +2,6 @@ class AwardYears::V2026::QaeForms
   class << self
     def mobility_step3
       @mobility_step3 ||= proc do
-
         about_section :dmobility_c_section_header, "" do
           section "your_social_mobility"
         end

@@ -136,10 +136,11 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "About section C",
         context: [
-          "This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility for at least two years (a minimum of 24 months)."
+          "This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility for at least two years (a minimum of 24 months).",
         ],
       )
     end
+
     # Covid impact
     def covid_impact
       OpenStruct.new(
@@ -184,7 +185,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "You may add up to three short and relevant materials (documents or online links) in Section F to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
+          "To support your answers in this section, you may add up to three short and relevant materials (documents or online links) in Section F, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
@@ -193,7 +194,7 @@ class QaeFormBuilder
       OpenStruct.new(
         header: "Supplementary materials",
         context: [
-          "You may add up to three short and relevant materials (documents or online links) in Section E to support your answers, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
+          "To support your answers in this section, you may add up to three short and relevant materials (documents or online links) in Section E, with a maximum size of 5MB each. If used, you must reference the documents clearly by name in your responses. Assessors have limited time to evaluate your application, so additional documents should be short and relevant. Do not use these materials as a substitute for narrative answers to the questions, as they may be overlooked. Please do not combine documents into a single file, and do not link to folders.",
         ],
       )
     end
@@ -231,8 +232,8 @@ class QaeFormBuilder
         context: [
           "Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.",
           "• Socio-economic background is a set of social and economic circumstances from which a person has come.",
-          "• Socio-economic status is a person's current social and economic circumstances."
-        ]
+          "• Socio-economic status is a person's current social and economic circumstances.",
+        ],
       )
     end
 
@@ -260,8 +261,8 @@ class QaeFormBuilder
           "• Ex-offenders;",
           "• Families of prisoners;",
           "This is not an exhaustive list. However, if you are putting forward a group that is not on this list, you will have to explain why you believe the group you support should be considered disadvantaged.",
-          "Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement."
-        ]
+          "Please note to be eligible for the award, your target group members, the participants, have to be based in the UK (including the Channel Islands and the Isle of Man) and be over 16 years old at the start of the engagement.",
+        ],
       )
     end
 
@@ -271,8 +272,8 @@ class QaeFormBuilder
         context: [
           "Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.",
           "The evidence could include but is not limited to internal records, third-party data, including independent third-party evaluations, survey responses, interviews, ad-hoc feedback.  Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.",
-          "Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise."
-        ]
+          "Please note that you will need to provide diversity data about people your initiative is supporting. If you are unable to provide this data, we will be unable to assess your application effectively, and you will be ineligible. Some companies have felt they cannot provide the data due to GDPR and concerns over privacy. However, diversity data can usually be provided anonymously and with consent. If in doubt, please ring The King's Awards for Enterprise helpline to discuss this further, and we will advise.",
+        ],
       )
     end
 
@@ -281,8 +282,8 @@ class QaeFormBuilder
         header: "Small initiatives",
         context: [
           "The King's Awards for Enterprise recognise that some initiatives will have small numbers. What we are seeking here is a demonstration of the impact - we will consider the type of disadvantaged groups you engage with and how challenging it is to reach out to them, recruit them and provide supportive, sustained activity.",
-          "If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals."
-        ]
+          "If relevant, please explain such issues and, importantly, show how the numbers you provide link to your goals.",
+        ],
       )
     end
     ######## Section C ########

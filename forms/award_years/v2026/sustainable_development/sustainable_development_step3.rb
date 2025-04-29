@@ -44,7 +44,7 @@ class AwardYears::V2026::QaeForms
             </p>
             <p>
               2. What short-term milestones have you set to measure progress?
-              
+
               \u2022 Provide key performance indicators used within your organisation - explain how they are established and tracked and any measures taken in the event they are not met.
               \u2022 Explain how you measure success and ensure continuous improvement.
               \u2022 What specific steps, roadmaps, and timelines are in place?
