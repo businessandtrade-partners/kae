@@ -37,12 +37,14 @@ class AwardYears::V2026::QaeForms
             <p>In this section, answer the following questions by providing clear evidence, data, or examples and referencing supporting materials to showcase your organisation's sustainability vision and strategy.</p>
             <p>
               1. What is your organisation's long-term vision for sustainability and how does it align with your organisation's core values?
+
               \u2022 Briefly describe your organisation and how it has embraced sustainability. Was this process incremental or transformational?
               \u2022 Explain how sustainability objectives are embedded within your business strategy and model.
               \u2022 How are your objectives aligned with the Sustainable Development Goals to deliver outcomes such as climate stability, healthy ecosystems, resource security, meeting basic needs, well-being, decent work, etc.?
             </p>
             <p>
               2. What short-term milestones have you set to measure progress?
+              
               \u2022 Provide key performance indicators used within your organisation - explain how they are established and tracked and any measures taken in the event they are not met.
               \u2022 Explain how you measure success and ensure continuous improvement.
               \u2022 What specific steps, roadmaps, and timelines are in place?
