@@ -32,6 +32,10 @@ class FileUploader < CarrierWave::Uploader::Base
     path.sub("tmp", "permanent")
   end
 
+  def url
+    Aws::S3::Presigner.new.presigned_request(:get_object, bucket: fog_directory, key: store_path).first
+  end
+
   private
 
   def clean?

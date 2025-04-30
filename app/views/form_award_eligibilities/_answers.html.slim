@@ -11,8 +11,8 @@
               span.govuk-warning-text__icon aria-hidden="true"
                 | !
               strong.govuk-warning-text__text
-                span.govuk-warning-text__assistive Warning
-                | This excludes you from applying for the King's Award for Enterprise
+                span.govuk-visually-hidden Warning
+                | This means you are not eligible to apply for the King’s Award for Enterprise. If this issue changes, you may be eligible to apply in another round.
         dd.govuk-summary-list__value
           - if eligibility.class.boolean_question?(question)
             - unless answer.nil?
