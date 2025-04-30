@@ -24,7 +24,7 @@ class AwardYears::V2026::QaeForms
               <li>Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.</li>
             </ul>
             <p>
-              You can submit files in most formats if it is less than 5 megabytes each.
+              You can submit up to 3 files in most formats if they are less than 5 megabytes each.
             </p>
           )
           pdf_context %(
@@ -41,7 +41,7 @@ class AwardYears::V2026::QaeForms
             \u2022 For assessors to review the supporting material, you must reference them by their names in your answers. Please do so to ensure they are reviewed.
             \u2022 Please do not combine documents and do not link to folders. Assessors have limited time to evaluate your application, so any additional documents should be kept short and relevant.
 
-            You can submit files in most formats if it is less than 5 megabytes each.
+            You can submit up to 3 files in most formats if they are less than 5 megabytes each.
           )
           hint "What are the allowed file formats?", %(
             <p>
