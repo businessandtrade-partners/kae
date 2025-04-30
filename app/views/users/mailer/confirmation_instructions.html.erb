@@ -1,14 +1,17 @@
-Welcome <%= @email %>,
+Dear <%= @resource.full_name.present? ? @resource.full_name : @resource.email %>,
 
-You have signed up for a King's Awards for Enterprise account.
+You have been signed up for a King's Awards for Enterprise account.
 
-You can confirm your email via the link below:
+You may be the account owner, or you may have been added as a collaborator by the account owner.
+
+Please follow the link below to confirm your email and set a password for your account:
 <%= confirmation_url(@resource, confirmation_token: @token) %>
 
-We recommend that you bookmark the login page to make it easier to find it in the future.
-If you've not signed up for an account with us, you can ignore this email.
+We recommend bookmarking the login page for easier access in the future.
 
-Note: If you are having issues opening the confirmation link then please try using a different web browser or network.
+If you did not register for an account or were not expecting this email, you may disregard it.
+
+Please note: Should you experience any issues when opening the confirmation link, we recommend trying a different web browser or network.
 
 Thank you,
 

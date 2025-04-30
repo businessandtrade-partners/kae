@@ -21,18 +21,6 @@ class CheckAccountOnBouncesEmail
     @email = user.email
   end
 
-  def run!
-    if debounce_api_says_it_is_valid?(email)
-      user.update_column(:marked_at_bounces_email, nil)
-      user.update_column(:debounce_api_response_code, nil)
-    else
-      user.update_column(:marked_at_bounces_email, true)
-      user.update_column(:debounce_api_response_code, code)
-    end
-
-    user.update_column(:debounce_api_latest_check_at, Time.zone.now)
-  end
-
   class << self
     def bounces_email?(email)
       User.bounced_emails
@@ -43,27 +31,5 @@ class CheckAccountOnBouncesEmail
     def bounce_reason(code)
       DEBOUNCE_API_RESPONSE_CODES[code]
     end
-  end
-
-  private
-
-  def debounce_api_says_it_is_valid?(email)
-    res = RestClient.get(
-      "https://api.debounce.io/v1/?api=#{ENV["DEBOUNCE_API_KEY"]}&email=#{email}",
-      { accept: :json },
-    )
-    @code = JSON.parse(res.body)["debounce"]["code"]
-
-    VALID_DEBOUNCE_API_CODES.include?(code.to_i)
-  rescue RestClient::Exceptions::ReadTimeout
-    #
-    # RARE CASE:
-    #
-    # Mark email as valid in case of getting Timeout error
-    # as Debounce API sometimes returns Timeout error
-    # for valid emails.
-    #
-
-    true
   end
 end

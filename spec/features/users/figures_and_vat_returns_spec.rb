@@ -16,6 +16,9 @@ describe "User uploads VAT returns and actual figures" do
       kind: "shortlisted_notifier",
       trigger_at: DateTime.now - 1.day,
     )
+    double = instance_double("Aws::S3::Presigner")
+    allow(Aws::S3::Presigner).to receive(:new).and_return(double)
+    allow(double).to receive(:presigned_request).and_return ["https://bucket.s3.eu-west-2.amazonaws.com/presigned-url"]
   end
 
   it "allows to submit vat returns and actual figures" do

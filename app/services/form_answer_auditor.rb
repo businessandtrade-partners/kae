@@ -1,6 +1,14 @@
 class FormAnswerAuditor
   include AuditHelper
 
+  WHODUNNIT_KLASS_MAP = {
+    "SUPERADMIN" => Admin,
+    "ADMIN" => Admin,
+    "ASSESSOR" => Assessor,
+    "JUDGE" => Judge,
+    "USER" => User,
+  }
+
   def initialize(form_answer)
     @form_answer = form_answer
   end
@@ -37,6 +45,8 @@ class FormAnswerAuditor
   def get_user_from_papertrail_version(version)
     return dummy_user if version.whodunnit.nil?
     klass, id = version.whodunnit.split(":")
-    klass.capitalize.constantize.find_by(id: id) || dummy_user
+    WHODUNNIT_KLASS_MAP[klass].find_by(id: id) || dummy_user
+  rescue NameError
+    dummy_user
   end
 end
