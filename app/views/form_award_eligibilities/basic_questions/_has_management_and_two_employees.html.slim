@@ -1,5 +1,9 @@
 .question-body
   p.govuk-hint
-    = @eligibility.class.hint(question)
+    | For example, if your application includes figures from three years’ trading, you must have had two or more full-time employees throughout that three-year period.
+  p.govuk-hint
+    | You can calculate the number of full-time employees at the year-end, or as the average across each 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).
+  p.govuk-hint
+    | If your organisation is based in the Channel Islands or Isle of Man, you should count only the employees who are located there – do not count any employees based in the UK.
   = f.input :has_management_and_two_employees, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
   span.clear

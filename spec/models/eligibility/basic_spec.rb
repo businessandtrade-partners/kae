@@ -62,6 +62,7 @@ RSpec.describe Eligibility::Basic, type: :model do
         :based_in_uk,
         :do_you_file_company_tax_returns,
         :organization_kind,
+        :has_management_and_two_employees,
         :industry,
         :self_contained_enterprise,
         :current_holder,

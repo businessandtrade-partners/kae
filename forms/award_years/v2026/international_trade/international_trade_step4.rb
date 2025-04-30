@@ -1,0 +1,357 @@
+class AwardYears::V2026::QaeForms
+  class << self
+    def trade_step4
+      @trade_step4 ||= proc do
+        about_section :commercial_success_info_block, "" do
+          section "trade_commercial_performance"
+        end
+
+        trade_commercial_success :trade_commercial_success, "Which award subcategory are you applying for?" do
+          classes "js-entry-period fs-trackable"
+          ref "D 1"
+          required
+          option "3 to 5", "Outstanding Short-Term Growth: a steep year-on-year growth (without dips) over the three most recent financial years"
+          option "6 plus", "Outstanding Continued Growth: a substantial year-on-year growth (without dips) over the six most recent financial years"
+          placeholder_preselected_condition :applied_for_queen_awards_details,
+            question_suffix: :year,
+            question_value: "3 to 5",
+            parent_question_answer_key: "3_years_application",
+            placeholder_text: %(
+              As you currently hold a King's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
+            )
+
+          placeholder_preselected_condition :applied_for_queen_awards_details,
+            question_suffix: :year,
+            question_value: "",
+            parent_question_answer_key: "application_disabled",
+            placeholder_text: %(
+              As you currently hold a King's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
+            )
+
+          additional_pdf_context I18n.t("pdf_texts.trade.queen_awards_question_additional_context", next_year: AwardYear.current.year, two_years: AwardYear.current.year + 1)
+
+          financial_date_selector({
+            "3 to 5" => "3",
+            "6 plus" => "6",
+          })
+          default_option "6 plus"
+          sub_category_question
+          context %(
+            <p>
+              Your answer here will determine whether you are assessed for outstanding growth (over three years) or continuous growth (over six years).
+            </p>
+            <p>
+              To increase your chances of winning, we suggest you select the subcategory that best reflects your circumstances. Both subcategories enable you to use the King's Awards emblem for five years.
+            </p>
+          )
+        end
+
+        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+          classes "fs-year-end fs-trackable"
+          ref "D 2"
+          required
+          financial_date_pointer
+        end
+
+        trade_most_recent_financial_year_options :most_recent_financial_year, "Which year would you like to be your most recent financial year that you will submit figures for?" do
+          ref "D 2.1"
+          required
+          option (AwardYear.current.year - 2).to_s, (AwardYear.current.year - 2).to_s
+          option (AwardYear.current.year - 1).to_s, (AwardYear.current.year - 1).to_s
+          classes "js-most-recent-financial-year"
+        end
+
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>three or six</span>-year entry period that you will be providing figures for?" do
+          classes "sub-question js-financial-year-change fs-trackable fs-are-dates-changed"
+          sub_ref "D 3"
+          required
+          yes_no
+          default_option "no"
+        end
+
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+          classes "sub-question fs-changed-dates fs-trackable"
+          sub_ref "D 3.1"
+          required
+          type :date
+          label ->(y) { "Financial year #{y}" }
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+          by_year_condition :trade_commercial_success, "3 to 5", 3
+          by_year_condition :trade_commercial_success, "6 plus", 6
+          conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, :yes
+        end
+
+        textarea :financial_figures_adjustment_explanation, "Explain adjustments to figures." do
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 3.2"
+          required
+          context %(
+            <p>
+              If your financial year-end has changed, you will need to agree with your accountants on how to allocate your figures so that they show three or six equal 12-month periods (36 consecutive months or 72 consecutive months). This allows for a comparison between years.
+            </p>
+            <p>
+              Please note, these figures will need to be externally verified, so they should reflect the actual figures achieved within the relevant months of each 12-month period.
+            </p>
+            <p>
+              Please explain what approach you will take to adjust the figures.
+            </p>
+          )
+          rows 5
+          words_max 200
+          conditional :financial_year_date_changed, "yes"
+        end
+
+        textarea :financial_year_date_changed_explaination, "Explain why your year-end date changed." do
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 3.3"
+          required
+          rows 5
+          words_max 100
+          conditional :financial_year_date_changed, "yes"
+        end
+
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+          classes "question-employee-min"
+          ref "D 4"
+          required
+          context %(
+            <p>You can use the number of full-time employees at the year-end or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents (FTEs).</p>
+
+            <p>If your organisation is based in the Channel Islands or Isle of Man, you should include only the employees who are located there (do not include employees who are in the UK).</p>
+          )
+          type :number
+          label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+
+          by_year_condition :trade_commercial_success, "3 to 5", 3
+          by_year_condition :trade_commercial_success, "6 plus", 6
+          employees_question
+        end
+
+        about_section :company_financials, "Company Financials" do
+          ref "D 5"
+          section "company_financials_trade"
+        end
+
+        by_years :overseas_sales, "Total overseas sales" do
+          ref "D 5.1"
+          classes "sub-question fs-overseas-sales fs-trackable"
+          required
+          context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
+            <p>
+              Include only:
+            </p>
+            <ul>
+              <li>
+                Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
+              </li>
+              <li>
+                Total export agency commissions.
+              </li>
+              <li>
+                Dividends remitted to the UK from direct overseas investments.
+              </li>
+              <li>
+                Income from portfolio investment abroad remitted to the UK.
+              </li>
+              <li>
+                Dividends on investments abroad not remitted to the UK.
+              </li>
+              <li>
+                Other earnings from overseas residents remitted to the UK.
+              </li>
+            </ul>
+            <p>
+              If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+            </p>
+            <p>
+              The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
+          )
+
+          pdf_context %(
+            <p>
+              To be eligible, you cannot have any dips in your total overseas sales over the period of your entry.
+            </p>
+            <p>
+              Include only:
+            </p>
+            <p>
+              \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
+
+              \u2022 Total export agency commissions.
+
+              \u2022 Dividends remitted to the UK from direct overseas investments.
+
+              \u2022 Income from portfolio investment abroad remitted to the UK.
+
+              \u2022 Dividends on investments abroad not remitted to the UK.
+
+              \u2022 Other earnings from overseas residents remitted to the UK.
+            </p>
+            <p>
+              If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+            </p>
+            <p>
+              The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If your organisation is based in the Channel Islands or Isle of Man, any sales to the UK should be counted as overseas sales. Likewise, a UK-based organisation's sales to the Channel Islands or Isle of Man should be counted as overseas sales.
+            </p>
+          )
+
+          type :money
+          by_year_condition :trade_commercial_success, "3 to 5", 3
+          by_year_condition :trade_commercial_success, "6 plus", 6
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+          first_year_min_value "100000", "Cannot be less than £100,000"
+          halt if: ->(q) { q.has_drops? },
+            title: "You do not meet the eligibility criteria for this award.",
+            message: ->(resource) do
+              value = resource.respond_to?(:fields_count) ? resource.fields_count : resource
+              (value == 3) ? %(
+                   Your total overseas sales are showing dips during the period of your entry. Therefore, you do not meet eligibility for the award and cannot proceed.
+                 ) : %{
+                   Your total overseas sales are showing dips during the period of our entry. If you had a steep year-on-year growth (without dips) over the three most recent financial years, consider applying on an "Outstanding Short-Term Growth" basis by changing your answer in D1. If you had dips in total overseas sales during that period, you do not meet eligibility for the award and cannot proceed.
+                 }
+            end
+          drop_block_conditional
+        end
+
+        by_years :total_turnover, "Total turnover (the UK and overseas)" do
+          classes "sub-question fs-total-turnover fs-trackable"
+          sub_ref "D 5.2"
+          type :money
+          required
+          by_year_condition :trade_commercial_success, "3 to 5", 3
+          by_year_condition :trade_commercial_success, "6 plus", 6
+          context %(
+            <p>
+              Exclude VAT, overseas taxes and, where applicable, excise duties.
+            </p>
+                    )
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+        end
+
+        by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
+          classes "sub-question fs-net-profit fs-trackable"
+          sub_ref "D 5.3"
+          required
+          type :money
+          by_year_condition :trade_commercial_success, "3 to 5", 3
+          by_year_condition :trade_commercial_success, "6 plus", 6
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+        end
+
+        textarea :drops_in_turnover, "If you have had any losses, drops in turnover, or reductions in net profit, please explain them." do
+          classes "sub-question text-words-max"
+          sub_ref "D 5.4"
+          required
+          context %(
+            <p>
+              Please note, when applicable, failure to answer this question may result in assessors not being able to fully assess your commercial performance, and therefore, your application may be rejected.
+            </p>
+            <p>
+              If you didn't have any losses, drops in turnover, or reductions in net profit, please state so.
+            </p>
+          )
+          rows 5
+          words_max 300
+        end
+
+        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable in terms of cash flow and cash generated." do
+          classes "sub-question text-words-max"
+          sub_ref "D 5.5"
+          required
+          rows 5
+          words_max 300
+        end
+
+        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives and, if applicable, the type and scale of investments you have received." do
+          classes "sub-question text-words-max"
+          sub_ref "D 5.6"
+          required
+          rows 5
+          words_max 300
+        end
+
+        financial_summary :trade_financial_summary, "Summary of your company financials (for information only)" do
+          sub_ref "D 5.7"
+        end
+
+        options :received_grant, "Have you received any grant funding or made use of any other government support?" do
+          ref "D 6"
+          required
+          yes_no
+          context %(
+            <p>Answer yes if you received such support during the last five years or at any time if it was in relation to your export products or services.</p>
+
+            <p>To receive grant funding or other government support, the organisation must usually undergo a rigorous vetting process, so if you have received any such funding, assessors will find it reassuring. However, many companies self-finance, and the assessors appreciate that as well.</p>
+          )
+        end
+
+        textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your export products or services (at any time)." do
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 6.1"
+          required
+          context %(
+            <p>If none of the support was in relation to your export products or services, please state so.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        textarea :funding_details_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 6.2"
+          required
+          context %(
+            <p>If the support was in relation to your export products or services, don't repeat it.</p>
+          )
+          rows 3
+          words_max 250
+          conditional :received_grant, "yes"
+        end
+
+        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+          ref "D 7"
+          required
+          context %(
+            <p>
+              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures.
+            </p>
+          )
+          yes_no
+        end
+
+        confirm :agree_to_provide_actuals, "Agreement to provide actual figures" do
+          classes "sub-question"
+          sub_ref "D 7.1"
+          required
+          conditional :are_any_of_the_figures_used_estimates, :yes
+          text %(
+            I understand that if this application is shortlisted, I will have to provide actual figures that have been verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email).
+          )
+        end
+
+        textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+          classes "sub-question word-max-strict text-words-max"
+          sub_ref "D 7.2"
+          required
+          conditional :are_any_of_the_figures_used_estimates, :yes
+          rows 5
+          words_max 250
+        end
+      end
+    end
+  end
+end

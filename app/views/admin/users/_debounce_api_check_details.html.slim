@@ -37,8 +37,3 @@
       | Next check will be today / tomorrow!
 
   .clearfix
-
-  - link_title = user_record.debounce_api_latest_check_at.present? ? 'Re-scan' : 'Scan now'
-  = link_to link_title, scan_via_debounce_api_admin_user_url(user_record), method: :post, class: "btn btn-default btn-md"
-
-

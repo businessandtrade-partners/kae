@@ -106,7 +106,11 @@ class QaeFormBuilder
     end
 
     def date_max(date)
-      @q.date_max = date
+      @q.date_max = if date.is_a? Proc
+        date.call
+      else
+        date
+      end
     end
 
     def dynamic_date_max(hash)
