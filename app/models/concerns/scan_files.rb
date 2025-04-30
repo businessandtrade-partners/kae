@@ -34,19 +34,23 @@ module ScanFiles
     base_creds = { region: ENV["AWS_REGION"] }
     tmp_bucket_creds = if ENV["COPILOT_ENVIRONMENT_NAME"].present?
       base_creds.merge({
+        use_iam_profile: true,
+      })
+    else
+      base_creds.merge({
         access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
         secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
       })
-    else
-      base_creds
     end
     clean_bucket_creds = if ENV["COPILOT_ENVIRONMENT_NAME"].present?
+      base_creds.merge({
+        use_iam_profile: true,
+      })
+    else
       base_creds.merge({
         access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
         secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
       })
-    else
-      base_creds
     end
     tmp_bucket_s3_client = Aws::S3::Client.new(tmp_bucket_creds)
     clean_bucket_s3_client = Aws::S3::Client.new(clean_bucket_creds)

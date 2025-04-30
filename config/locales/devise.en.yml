@@ -19,7 +19,7 @@ en:
       unconfirmed: "You have to confirm your email address before continuing."
     mailer:
       confirmation_instructions:
-        subject: "Confirmation instructions"
+        subject: "Confirm Your King's Awards for Enterprise Account"
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:

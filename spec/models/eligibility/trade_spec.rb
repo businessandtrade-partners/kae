@@ -43,7 +43,6 @@ RSpec.describe Eligibility::Trade, type: :model do
       eligibility.growth_over_the_last_three_years = true
       eligibility.sales_above_100_000_pounds = "yes"
       eligibility.any_dips_over_the_last_three_years = false
-      eligibility.has_management_and_two_employees = true
       eligibility.current_holder_of_qae_for_trade = false
 
       expect(eligibility).to be_eligible
@@ -65,8 +64,7 @@ RSpec.describe Eligibility::Trade, type: :model do
     it "returns all questions for new eligibility" do
       expect(eligibility.questions).to eq([:growth_over_the_last_three_years,
         :sales_above_100_000_pounds,
-        :any_dips_over_the_last_three_years,
-        :has_management_and_two_employees])
+        :any_dips_over_the_last_three_years])
     end
 
     it "Does not return holder award questions" do
