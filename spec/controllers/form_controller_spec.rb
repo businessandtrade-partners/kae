@@ -126,6 +126,12 @@ describe FormController do
   describe "#add_attachment" do
     let(:file) { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/cat.jpg"), "image/jpeg") }
 
+    before do
+      double = instance_double("Aws::S3::Presigner")
+      allow(Aws::S3::Presigner).to receive(:new).and_return(double)
+      allow(double).to receive(:presigned_request).and_return ["https://bucket.s3.eu-west-2.amazonaws.com/presigned-url"]
+    end
+
     it "adds attachment to the form answer" do
       expect {
         post :add_attachment, params: {

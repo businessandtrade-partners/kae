@@ -42,6 +42,7 @@ describe "Admin fulfills the Palace Attendees" do
         within "#new_palace_attendee" do
           # waiting for the last input to be rendered
           find("input#palace_attendee_phone_number_0")
+          select "Mr.", from: "palace_attendee_title_0"
           find("input#palace_attendee_has_royal_family_connections_true").set(true)
           find("input#palace_attendee_disabled_access_true").set(true)
           fill_in "palace_attendee_royal_family_connection_details_0", with: "connection details"

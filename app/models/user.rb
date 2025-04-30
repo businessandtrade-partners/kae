@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   POSSIBLE_ROLES = %w[account_admin regular]
   POSSIBLE_TITLES = %w[Mr Mrs Miss Ms Mx Dr Professor Reverend Sir Baron Baroness Dame Lady Lord]
+  DIETARY_REQUIREMENTS = ["Complex requirement", "Vegan", "Vegetarian", "Gluten free and coeliac", "Dairy free and lactose free", "Fish and shellfish allergies", "FODMAP", "Keto", "Kosher", "Paleo", "Tree nut and peanut allergies"]
 
   devise :database_authenticatable, :registerable,
     :recoverable, :trackable, :validatable, :confirmable,

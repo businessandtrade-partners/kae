@@ -476,29 +476,9 @@ class AwardYears::V2026::QaeForms
           words_max 250
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
-          ref "D 8"
-          classes "text-words-max"
-          required
-          context %(
-            <ul>
-              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
-              <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
-              <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
-            </ul>
-          )
-          pdf_context %(
-            \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
-            \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
-            \u2022 Provide any contextual information or challenges you would like the assessors to consider.
-          )
-          rows 4
-          words_max 350
-        end
-
         options :innovations_grant_funding, "Have you received any grant funding or made use of any other government support?" do
           classes "sub-question"
-          sub_ref "D 9"
+          sub_ref "D 8"
           required
           yes_no
           context %(
@@ -510,7 +490,7 @@ class AwardYears::V2026::QaeForms
 
         textarea :innovation_grant_funding_sources, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received in relation to your innovation (at any time)." do
           classes "sub-question word-max-strict text-words-max"
-          sub_ref "D 9.1"
+          sub_ref "D 8.1"
           required
           context %(
             <p>If none of the support was in relation to your innovation, please state so.</p>
@@ -522,7 +502,7 @@ class AwardYears::V2026::QaeForms
 
         textarea :innovation_grant_funding_sources_in_application_period, "Provide details of dates, sources, types and, if relevant, amounts of the government support you received during the last five years." do
           classes "sub-question word-max-strict text-words-max"
-          sub_ref "D 9.2"
+          sub_ref "D 8.2"
           required
           context %(
             <p>If the support was in relation to your innovation, don't repeat it.</p>
@@ -534,7 +514,7 @@ class AwardYears::V2026::QaeForms
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           required
-          ref "D 10"
+          ref "D 9"
           yes_no
           context %(
             <p>
@@ -546,7 +526,7 @@ class AwardYears::V2026::QaeForms
 
         confirm :agree_to_provide_actual_figures, "Agreement to provide actual figures" do
           classes "sub-question"
-          sub_ref "D 10.1"
+          sub_ref "D 9.1"
           required
           text " I understand that if this application is shortlisted, I will have to provide actual figures that have been verified by an external accountant before the specified November deadline (the exact date will be provided in the shortlisting email)."
           conditional :product_estimated_figures, :yes
@@ -555,7 +535,7 @@ class AwardYears::V2026::QaeForms
 
         textarea :product_estimates_use, "Explain your use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question text-words-max"
-          sub_ref "D 10.2"
+          sub_ref "D 9.2"
           required
           rows 2
           words_max 200

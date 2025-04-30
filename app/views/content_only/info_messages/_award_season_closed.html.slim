@@ -1,13 +1,27 @@
-article.group role="article"
-  div
-    .application-notice.info-notice
-      p.govuk-body
-        = render "content_only/info_messages/new_users_message"
+div[class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner"]
+  div[class="govuk-notification-banner__header"]
+    h2[class="govuk-notification-banner__title" id="govuk-notification-banner-title"]
+      ' Important
+  div[class="govuk-notification-banner__content"]
+    = render "content_only/info_messages/new_users_message"
 
-        ' The entry period for the
-        = AwardYear.current.year
-        '  Awards season has now closed. We will email you when the Awards open.
+    - if Settings.winners_stage? && @current_user.form_answers.have_award_decision.for_year(AwardYear.current.year).any?
+      h3[class="govuk-notification-banner__heading" style="max-width: 100%;"]
+        ' Your Current Application
+      p[class="govuk-body" style="max-width: 100%;"]
+        ' You should have received an email from us notifying you of the outcome of your application.
+      p[class="govuk-body" style="max-width: 100%;"]
+        ' Please check your spam/junk mail if you haven’t heard and then contact us using the helpline or email below.
+      p[class="govuk-body" style="max-width: 100%;"]
+        = link_to "kingsawards@businessandtrade.gov.uk", "mailto: kingsawards@businessandtrade.gov.uk", class: 'govuk-link'
         br
-        ' Award recipients will be announced on
-        =< application_deadline_for_year(AwardYear.current, :buckingham_palace_attendees_details, "with_year")
-        ' .
+        ' 020 4551 0081
+
+    h3[class="govuk-notification-banner__heading" style="max-width: 100%;"]
+      ' Next round of Awards
+    p[class="govuk-body" style="max-width: 100%;"]
+      ' The new round of Awards to be announced next year opens for applications on 6th May.
+    p[class="govuk-body" style="max-width: 100%;"]
+      ' If you've opted in for notifications, we'll email you a reminder. You can update your notification preferences on your 
+      =<> link_to "Contact Preferences", contact_settings_account_path, class: 'govuk-link'
+      ' page.

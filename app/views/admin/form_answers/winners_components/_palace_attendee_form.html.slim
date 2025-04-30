@@ -11,7 +11,7 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       = f.input :palace_invite_id, as: :hidden
       .row
         .col-md-2
-          = f.input :title, as: :string, label: "Title", input_html: { class: "form-control", id: "palace_attendee_title_#{index}" }
+          = f.input :title, as: :select, collection: PalaceInvite::POSSIBLE_TITLES, label: "Title", input_html: { class: "form-control", id: "palace_attendee_title_#{index}" }
       .row
         .col-md-5
           = f.input :first_name, as: :string, label: "First name", input_html: { class: "form-control", id: "palace_attendee_first_name_#{index}" }
@@ -21,6 +21,9 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       .row
         .col-md-8
           = f.input :job_name, as: :string, label: "Job title/position", input_html: { class: "form-control", id: "palace_attendee_job_name_#{index}" }
+      .row
+        .col-md-8
+          = f.input :sector, as: :string, label: "Sector", input_html: { class: "form-control", id: "palace_attendee_sector_#{index}" }
       .row
         .col-md-8
           = f.input :post_nominals, as: :string, label: "Decorations/post-nominals", input_html: { class: "form-control", id: "palace_attendee_post_nominals_#{index}" }
@@ -38,6 +41,12 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :royal_family_connection_details, as: :text, label: "Please provide details of your or your organisation's associations with the Royal Family.", input_html: { rows: 5, data: { "word-max" => 100 }, class: "js-char-count js-royal-connection-details form-control", id: "palace_attendee_royal_family_connection_details_#{index}" }
 
       .row
+        .col-md-12
+          = f.input :association_to_commonwealth_countries, as: :text, label: "If you have any association with Commonwealth countries, please provide details. (If not, leave blank.)", input_html: { class: "form-control", id: "palace_attendee_association_to_commonwealth_countries_#{index}", rows: 2 }
+      .row
+        .col-md-12
+          = f.input :leader_or_volunteer_in_an_initiative, as: :text, label: "If you are a leader or volunteer in a Culture, Community, or Climate initiative, please provide details. (If not, leave blank.)", input_html: { class: "form-control", id: "palace_attendee_leader_or_volunteer_in_an_initiative_#{index}", rows: 2 }
+      .row
         .col-md-8
           = f.input :address_1, as: :string, label: "Address line 1", input_html: { class: "form-control", id: "palace_attendee_address_1_#{index}" }
           p.help-block The address should match the identification documents the attendee will bring on the evening. More detailed guidance will be provided with the formal invitation.
@@ -48,7 +57,7 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :address_3, as: :string, label: "City or town", input_html: { class: "form-control", id: "palace_attendee_address_3__#{index}" }
       .row
         .col-md-8
-          = f.input :address_4, as: :string, label: "County", input_html: { class: "form-control", id: "palace_attendee_address_4_#{index}" }
+          = f.input :address_4, as: :string, label: "County", as: :select, collection: palace_invite_counties, input_html: { class: "form-control", id: "palace_attendee_address_4_#{index}" }
       .row
         .col-md-2
           = f.input :postcode, as: :string, label: "Postcode", input_html: { class: "form-control", id: "palace_attendee_postcode_#{index}" }
@@ -56,8 +65,8 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
           = f.input :phone_number, as: :string, label: "Telephone number", input_html: { class: "form-control", id: "palace_attendee_phone_number_#{index}" }
           p.help-block If known
       .row
-        .col-md-12
-          = f.input :dietary_requirements, as: :text, label: "Dietary needs", input_html: { class: "form-control", id: "palace_attendee_dietary_requirements_#{index}", rows: 2 }
+        .col-md-8
+          = f.input :dietary_requirements, as: :select, collection: User::DIETARY_REQUIREMENTS, label: "Dietary needs", input_html: { class: "form-control medium", id: "palace_attendee_dietary_requirements_#{index}", rows: 2 }
       .row
         .col-md-8
           = f.input :disabled_access, as: :radio_buttons, label: "Does the attendee require disabled access?", wrapper_html: { class: "disabled-access-wrapper", id: "palace_attendee_disabled_access_#{index}" }

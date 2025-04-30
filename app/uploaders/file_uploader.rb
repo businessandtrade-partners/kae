@@ -5,7 +5,7 @@ class FileUploader < CarrierWave::Uploader::Base
   storage :custom
 
   def store_dir
-    "uploads/#{base_dir}/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def read
@@ -28,15 +28,15 @@ class FileUploader < CarrierWave::Uploader::Base
     clean? ? ENV["AWS_S3_PERMANENT_BUCKET"] : ENV["AWS_S3_TMP_BUCKET"]
   end
 
-  def permanent_path
+  def permanent_path # only for local file usage
     path.sub("tmp", "permanent")
   end
 
-  private
-
-  def base_dir
-    clean? ? "permanent" : "tmp"
+  def url
+    Aws::S3::Presigner.new.presigned_request(:get_object, bucket: fog_directory, key: store_path).first
   end
+
+  private
 
   def clean?
     model.respond_to?(:clean?) && model.clean?
@@ -56,20 +56,36 @@ class FileUploader < CarrierWave::Uploader::Base
   end
 
   def tmp_bucket_credentials
-    {
-      provider: "AWS",
-      aws_access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
-      region: ENV["AWS_REGION"],
-    }
+    if ENV["COPILOT_ENVIRONMENT_NAME"].present?
+      {
+        provider: "AWS",
+        use_iam_profile: true,
+        region: ENV["AWS_REGION"],
+      }
+    else
+      {
+        provider: "AWS",
+        region: ENV["AWS_REGION"],
+        aws_access_key_id: ENV["AWS_TMP_BUCKET_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_TMP_BUCKET_SECRET_ACCESS_KEY"],
+      }
+    end
   end
 
   def clean_bucket_credentials
-    {
-      provider: "AWS",
-      aws_access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
-      region: ENV["AWS_REGION"],
-    }
+    if ENV["COPILOT_ENVIRONMENT_NAME"].present?
+      {
+        provider: "AWS",
+        use_iam_profile: true,
+        region: ENV["AWS_REGION"],
+      }
+    else
+      {
+        provider: "AWS",
+        region: ENV["AWS_REGION"],
+        aws_access_key_id: ENV["AWS_PERMANENT_BUCKET_ACCESS_KEY_ID"],
+        aws_secret_access_key: ENV["AWS_PERMANENT_BUCKET_SECRET_ACCESS_KEY"],
+      }
+    end
   end
 end

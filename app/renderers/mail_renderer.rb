@@ -210,6 +210,12 @@ class MailRenderer
       "%-d %B %Y",
     )
 
+    reception_deadline_time = deadline_time("buckingham_palace_reception_attendee_information_due_by")
+    assigns[:reception_deadline_with_day_and_time] = deadline_str(
+      "buckingham_palace_reception_attendee_information_due_by",
+      "#{reception_deadline_time} on %A, %-d %B %Y",
+    )
+
     render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
   end
 
@@ -264,6 +270,33 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:name] = "John Smith"
     assigns[:token] = "securetoken"
+    assigns[:urn] = "KAE00000001"
+
+    end_of_embargo_time = deadline_time("buckingham_palace_attendees_details")
+    assigns[:end_of_embargo_with_time] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "#{end_of_embargo_time} on %-d %B %Y",
+    )
+
+    assigns[:end_of_embargo_without_year] = deadline_str(
+      "buckingham_palace_attendees_details",
+      "%-d %B",
+    )
+
+    assigns[:media_deadline_without_year] = deadline_str(
+      "buckingham_palace_media_information",
+      "%A, %d %B",
+    )
+
+    assigns[:book_notes_deadline] = deadline_str(
+      "buckingham_palace_confirm_press_book_notes",
+      "%A, %d %B %Y",
+    )
+    book_notes_deadline_time = deadline_time("buckingham_palace_confirm_press_book_notes")
+    assigns[:book_notes_deadline_with_time_and_day] = deadline_str(
+      "buckingham_palace_confirm_press_book_notes",
+      "#{book_notes_deadline_time} on %A %-d %B",
+    )
 
     assigns[:reception_date] = deadline_str(
       "buckingham_palace_attendees_invite",

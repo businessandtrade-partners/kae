@@ -3,14 +3,14 @@
 div
   header.group.page-header.page-header-wider
     div
-      h1.govuk-heading-l Windsor Castle Attendee Information
+      - if @invite.submitted?
+        h1.govuk-heading-l Thank you - you have successfully submitted the guest details for the Royal Reception.
+      - else
+        h1.govuk-heading-l Royal Reception at Windsor Castle
 
   .article-container.article-container-wider
     article.group role="article"
       .inner
-        - if @invite.submitted?
-          p.govuk-body
-            | Thank you for providing the guest details for the Royal Reception.
         p.govuk-body
           | On
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_day
@@ -18,8 +18,33 @@ div
           =< AwardYear.buckingham_palace_reception_deadline(award_year).decorate.formatted_trigger_time(date_format: "%-d %B %Y,")
           | , a Royal Reception at Windsor Castle will be held for organisations who have received this year's King's Award. Successful organisations can send one attendee per award won.
 
-        p.govuk-body
-          | Please aim to arrive from 5:00 pm; entry will not be considered after 5:45 pm. The Royal Household will send full details in the formal invitation approximately four weeks before the Reception.
+        - if @invite.submitted?
+          p.govuk-body
+            | The Royal Household will send full details in the formal invitation approximately three weeks before the Reception.
+
+        h2.govuk-heading-m Important notices
+
+        ul
+          li
+            p.govuk-body We kindly ask that you do not publicise the date or time of this event in advance.
+          li
+            p.govuk-body Guests will arrive at the Castle from 5:15 pm, and entry will not be considered after 5:45 pm.
+          li
+            p.govuk-body Shuttle buses and a Golf Buggy will be available on entry to support those with any mobility issues on the evening.
+          li
+            p.govuk-body Cloakrooms and restrooms are available as guests enter the Castle.
+          li
+            p.govuk-body Please note that mobile phones, cameras or electronic devices should not be used during the Reception. However, a host photographer will be present, and details of how to access images will be provided on the evening.
+          li
+            p.govuk-body Members of The Royal Family will circulate throughout the Reception, although it may not be possible for every guest to be met in person.
+          li
+            p.govuk-body Please also take this opportunity to confirm that your organisation’s county is correctly listed on your application account, as this will help you identify correctly your local Lord Lieutenant to arrange your Award presentation event.
+
+        br
+
+        - unless @invite.submitted?
+          p.govuk-body
+            | The Royal Household will send full details in the formal invitation approximately three weeks before the Reception.
 
         - if !@invite.submitted?
           = render 'form'

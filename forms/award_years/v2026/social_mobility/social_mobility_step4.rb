@@ -189,28 +189,8 @@ class AwardYears::V2026::QaeForms
           one_option
         end
 
-        textarea :covid_impact_details, "Explain how your business has been responding to the economic uncertainty experienced nationally and globally in recent years." do
-          ref "D 5"
-          classes "text-words-max"
-          required
-          context %(
-            <ul>
-              <li>How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?</li>
-              <li>How are you planning to respond in the year ahead? This could include opportunities you have identified.</li>
-              <li>Provide any contextual information or challenges you would like the assessors to consider.</li>
-            </ul>
-          )
-          pdf_context %(
-            \u2022 How have you adapted to or mitigated the impacts of recent adverse national and global events such as COVID-19, the war in Ukraine, flooding, or wildfires?
-            \u2022 How are you planning to respond in the year ahead? This could include opportunities you have identified.
-            \u2022 Provide any contextual information or challenges you would like the assessors to consider.
-          )
-          rows 4
-          words_max 350
-        end
-
         options :received_grant, "Have you received any grant funding or made use of any other government support?" do
-          ref "D 6"
+          ref "D 5"
           required
           yes_no
           context %(
@@ -222,7 +202,7 @@ class AwardYears::V2026::QaeForms
 
         textarea :funding_details, "Provide details of dates, sources, types and, if relevant, amounts of the government support." do
           classes "sub-question word-max-strict text-words-max"
-          sub_ref "D 6.1"
+          sub_ref "D 5.1"
           required
           context %(
             <p>Include any such support received during the last five years.</p>
@@ -233,7 +213,7 @@ class AwardYears::V2026::QaeForms
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "D 7"
+          ref "D 6"
           required
           context %(
             <p>
@@ -245,7 +225,7 @@ class AwardYears::V2026::QaeForms
 
         confirm :agree_to_provide_actuals, "Agreement to provide actual figures." do
           classes "sub-question"
-          sub_ref "D 7.1"
+          sub_ref "D 6.1"
           required
           conditional :product_estimated_figures, :yes
           text %(
@@ -255,7 +235,7 @@ class AwardYears::V2026::QaeForms
 
         textarea :product_estimates_use, "Explain the use of estimates and how much of these are actual receipts or firm orders." do
           classes "sub-question text-words-max"
-          sub_ref "D 7.2"
+          sub_ref "D 6.2"
           required
           rows 5
           words_max 250
@@ -264,7 +244,7 @@ class AwardYears::V2026::QaeForms
 
         upload :supporting_financials, "To support your figures, please upload your financial statements for the years covered in previous questions in section D." do
           classes "sub-question"
-          sub_ref "D 8"
+          sub_ref "D 7"
           context %(
             <p>
               If you are a company, upload relevant accounts as submitted to the Companies House. In addition, upload the full accounts prepared by your company and your corporation tax returns as submitted to HMRC.
@@ -284,7 +264,7 @@ class AwardYears::V2026::QaeForms
               You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
-          max_attachments 15
+          max_attachments 6
         end
       end
     end
