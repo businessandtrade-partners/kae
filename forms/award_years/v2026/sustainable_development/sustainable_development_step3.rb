@@ -17,7 +17,7 @@ class AwardYears::V2026::QaeForms
               <ul>
                 <li>Briefly describe your organisation and how it has embraced sustainability. Was this process incremental or transformational?</li>
                 <li>Explain how sustainability objectives are embedded within your business strategy and model.</li>
-                <li>How are your objectives aligned with the Sustainable Development Goals to deliver outcomes such as climate stability, healthy ecosystems, resource security, meeting basic needs, well-being, decent work, etc.?</li>
+                <li>How are your objectives aligned with the United Nations Sustainable Development Goals to deliver outcomes such as climate stability, healthy ecosystems, resource security, meeting basic needs, well-being, decent work, etc.?</li>
               </ul>
               <li>What short-term milestones have you set to measure progress?</li>
               <ul>
@@ -40,7 +40,7 @@ class AwardYears::V2026::QaeForms
 
               \u2022 Briefly describe your organisation and how it has embraced sustainability. Was this process incremental or transformational?
               \u2022 Explain how sustainability objectives are embedded within your business strategy and model.
-              \u2022 How are your objectives aligned with the Sustainable Development Goals to deliver outcomes such as climate stability, healthy ecosystems, resource security, meeting basic needs, well-being, decent work, etc.?
+              \u2022 How are your objectives aligned with the United Nations Sustainable Development Goals to deliver outcomes such as climate stability, healthy ecosystems, resource security, meeting basic needs, well-being, decent work, etc.?
             </p>
             <p>
               2. What short-term milestones have you set to measure progress?
