@@ -159,10 +159,6 @@ class User < ApplicationRecord
     ENV.fetch("SESSION_TIMEOUT", 24).to_i.hours
   end
 
-  def check_email_on_bounces!
-    ::CheckAccountOnBouncesEmail.new(self).run!
-  end
-
   def bounces_email_reason
     ::CheckAccountOnBouncesEmail.bounce_reason(debounce_api_response_code)
   end

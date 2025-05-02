@@ -6,6 +6,7 @@ require_relative "../../forms/award_years/v2022/qae_forms"
 require_relative "../../forms/award_years/v2023/qae_forms"
 require_relative "../../forms/award_years/v2024/qae_forms"
 require_relative "../../forms/award_years/v2025/qae_forms"
+require_relative "../../forms/award_years/v2026/qae_forms"
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -189,6 +190,7 @@ class FormAnswer < ApplicationRecord
   scope :require_vocf, -> { where(award_type: %w[trade innovation]) }
   scope :vocf_free, -> { where(award_type: %w[mobility development]) }
   scope :provided_estimates, -> { where("document #>> '{product_estimated_figures}' = 'yes'") }
+  scope :have_award_decision, -> { where(state: ["awarded", "not_awarded"]) }
 
   # callbacks
   before_save :set_award_year, unless: :award_year

@@ -1,4 +1,5 @@
 require "rails_helper"
+require "support/shared_web_helpers/form_helpers"
 
 Warden.test_mode!
 
@@ -16,23 +17,18 @@ describe "Eligibility forms" do
     it "process the eligibility form", js: true do
       visit dashboard_path
       new_application("International Trade Award")
-      # fill_in("award-reference", with: "trade nick")
       click_button("Start eligibility questionnaire")
       click_link("Continue to eligibility questions")
 
+      answer_basic_eligibility_questions
+
+      # Trade eligibility questions
       form_choice([
-        "Yes",
-        "Yes",
-        /Business/,
-        /Product/,
-        "Yes",
-        "No",
-        "Yes",
-        "Yes",
-        "Yes",
-        "No",
-        "Yes",
+        "Yes", # Has your business shown significant growth in overseas sales over the last 3 years?
+        "Yes", # Do your overseas sales account for at least 5% of your total sales or at least £100,000 per year?
+        "No",  # Have there been any significant dips in your overseas sales?
       ])
+
       expect(page).to have_content("You are eligible to begin your application")
       first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
@@ -46,13 +42,24 @@ describe "Eligibility forms" do
       fill_in("award-reference", with: "innovation nick")
       click_button("Save and start eligibility questionnaire")
       click_link("Continue to eligibility questions")
-      form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes", "Yes", "Yes", "Yes"])
+
+      answer_basic_eligibility_questions
+
+      # Innovation eligibility questions
+      form_choice([
+        "Yes", # Does your organization own, control, or have the rights to use the innovation being entered for this award?
+        "Yes",  # Has your innovation achieved quantifiable commercial benefits for your business?
+      ])
 
       fill_in("How many innovative products, services, business models or processes would you like to enter for the award?", with: 2)
       click_button "Continue"
-      form_choice("Yes")
-      form_choice("Yes")
-      form_choice("Yes")
+
+      form_choice([
+        "Yes", # Is your innovation currently available in the market?
+        "Yes", # Has your innovation been on the market for at least two years?
+        "Yes",  # Can you demonstrate that your innovation has benefited your business and wider society?
+      ])
+
       expect(page).to have_content("You are eligible to begin your application")
       first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")
@@ -63,47 +70,60 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Sustainable Development Award")
-      # fill_in("award-reference", with: "development nick")
       click_button "Start eligibility questionnaire"
       click_link("Continue to eligibility questions")
+
+      answer_basic_eligibility_questions
+
+      # Development eligibility questions
       form_choice([
-        "Yes",
-        "Yes",
-        /Business/,
-        /Product/,
-        "Yes",
-        "No",
-        "Yes",
-        "Yes",
-        "Yes",
-        "Yes",
-        "Yes",
+        "Yes", # Does your organization own, control, or have the rights to use the sustainable development initiative being entered?
+        "Yes",  # Can you demonstrate that your sustainable development initiative has benefited your business and wider society?
       ])
+
       expect(page).to have_content("You are eligible to begin your application")
       first(".previous-answers").click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for a Sustainable Development Award.")
     end
   end
-end
 
-def form_choice(labels)
-  label_ids = Array(labels)
+  context "mobility" do
+    it "process the eligibility form" do
+      visit dashboard_path
+      new_application("Promoting Opportunity Award (through social mobility)")
+      fill_in "award-reference", with: "mobility test"
+      click_button "Save and start eligibility questionnaire"
+      click_link "Continue to eligibility questions"
 
-  label_ids.each do |label_id|
-    l = all(".question-body .govuk-radios__item").detect do |label|
-      if label_id.is_a?(String)
-        label.text == label_id
-      elsif label_id.is_a?(Regexp)
-        label.text =~ label_id
-      end
+      answer_basic_eligibility_questions
+
+      # Mobility eligibility questions
+      form_choice([
+        "Yes",                # Can you provide financial performance figures for the last three years?
+        "A. We have an initiative that supports social mobility as a discretionary activity (social mobility is not our core activity).", # How does social mobility relate to your organization's activities?
+        "Yes",               # Have you been actively promoting opportunity through social mobility to help disadvantaged groups?
+        "Yes",               # Are your target beneficiary group members based in the UK?
+        "Yes",               # Do your activities focus on improving socio-economic/educational opportunities?
+        "Yes",               # Have you been running these initiatives for at least two years?
+        "Yes",                # Can you demonstrate evidence of positive impact on beneficiaries?
+      ])
+
+      expect(page).to have_content("You are eligible to begin your application")
+      first(".previous-answers").click_link("Continue")
+      expect(page).to have_content("You are eligible to begin your application for a Promoting Opportunity (through social mobility) Award")
     end
-
-    l.find("input", visible: false).set(true)
-    click_button "Continue"
   end
-end
 
-def new_application(type)
-  header = find(".applications-list .govuk-summary-list__row .govuk-summary-list__key .govuk-heading-s", text: type)
-  header.find(:xpath, "../..").first("a").click
+  def answer_basic_eligibility_questions
+    form_choice([
+      "Yes",     # Is your business based in the UK (including the Channel Islands and the Isle of Man)?
+      "Yes",     # Does your organization file Company Tax Returns with HMRC?
+      "Business (for example, companies, partnerships, social enterprises)", # What kind of organization are you?
+      "Yes",     # Does your organization have at least two full-time UK employees (or full-time equivalent)?
+      /Product/, # What is your main business activity?
+      "Yes",     # Is your organization a self-contained enterprise which markets its own products or services?
+      "No",      # Are you a current holder of a Queen's Award for Enterprise?
+      "Yes",      # Do you agree to promote and demonstrate ethical business practices in line with ESG principles?
+    ])
+  end
 end

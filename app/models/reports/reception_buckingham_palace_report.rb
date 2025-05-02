@@ -97,7 +97,7 @@ class Reports::ReceptionBuckinghamPalaceReport
 
         row = mapping.map do |m|
           raw = attendee_pointer.call_method(m[:method])
-          Utils::String.sanitize(raw)
+          unescape_and_sanitize(raw)
         end
 
         yielder << CSV.generate_line(row, encoding: "UTF-8", force_quotes: true)

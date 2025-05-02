@@ -6,7 +6,7 @@ RSpec.describe Eligibility::Development, type: :model do
   context "answers storage" do
     it "saves and reads answers" do
       eligibility = Eligibility::Development.new(account: account)
-      eligibility.sustainable_development = "yes"
+      eligibility.able_to_provide_actual_figures = "yes"
 
       expect { eligibility.save! }.to change {
         Eligibility::Development.count
@@ -15,7 +15,7 @@ RSpec.describe Eligibility::Development, type: :model do
       eligibility = Eligibility::Development.last
 
       expect(eligibility.account).to eq(account)
-      expect(eligibility).to be_sustainable_development
+      expect(eligibility).to be_able_to_provide_actual_figures
     end
   end
 
@@ -28,14 +28,12 @@ RSpec.describe Eligibility::Development, type: :model do
 
     it "is eligible when all questions are answered correctly" do
       eligibility.able_to_provide_actual_figures = "yes"
-      eligibility.has_management_and_two_employees = "yes"
-      eligibility.sustainable_development = "yes"
       eligibility.adheres_to_sustainable_principles = "yes"
       expect(eligibility).to be_eligible
     end
 
     it "is not eligible when not all answers are correct" do
-      eligibility.sustainable_development = "no"
+      eligibility.able_to_provide_actual_figures = "no"
 
       expect(eligibility).not_to be_eligible
     end
