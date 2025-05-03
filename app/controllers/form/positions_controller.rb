@@ -55,10 +55,6 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
     end
   end
 
-  def confirm_deletion
-    self.item = item_class.new(item_params)
-  end
-
   def destroy
     @form_answer.document = remove_result_doc
     @form_answer.save
@@ -84,13 +80,13 @@ class Form::PositionsController < Form::NonJsDynamicListsFormSectionController
     end
   end
 
+  private
+
   def item_detect_condition(el, attrs = nil)
     el["name"] == (attrs.present? ? attrs[:name] : ops_hash[:name]) &&
       el["start_month"] == (attrs.present? ? attrs[:start_month] : ops_hash[:start_month]) &&
       el["start_year"] == (attrs.present? ? attrs[:start_year] : ops_hash[:start_year])
   end
-
-  private
 
   def item_params
     params.require(:position).permit(
