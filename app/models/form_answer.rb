@@ -9,7 +9,6 @@ require_relative "../../forms/award_years/v2025/qae_forms"
 require_relative "../../forms/award_years/v2026/qae_forms"
 
 class FormAnswer < ApplicationRecord
-  include Statesman::Adapters::ActiveRecordQueries
   include PgSearch::Model
   extend Enumerize
   include FormAnswerStatesHelper
@@ -523,6 +522,8 @@ class FormAnswer < ApplicationRecord
   def self.initial_state
     FormAnswerStateMachine.initial_state
   end
+
+  include Statesman::Adapters::ActiveRecordQueries
 
   private
 
