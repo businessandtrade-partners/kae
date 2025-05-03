@@ -168,6 +168,9 @@ GEM
       cucumber-messages (~> 12.4, >= 12.4.0)
     cucumber-messages (12.4.0)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
+    cuprite (0.15.1)
+      capybara (~> 3.0)
+      ferrum (~> 0.15.0)
     database_cleaner-active_record (2.1.0)
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
@@ -223,6 +226,11 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    ferrum (0.15)
+      addressable (~> 2.5)
+      concurrent-ruby (~> 1.1)
+      webrick (~> 1.7)
+      websocket-driver (~> 0.7)
     ffi (1.15.5)
     fog-aws (3.19.0)
       fog-core (~> 2.1)
@@ -571,10 +579,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.11.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
-      websocket (~> 1.0)
     semantic_range (3.0.0)
     sentry-rails (5.19.0)
       railties (>= 5.0)
@@ -683,7 +687,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    websocket (1.2.9)
+    webrick (1.9.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -722,6 +726,7 @@ DEPENDENCIES
   codeclimate_circle_ci_coverage
   coffee-rails (= 5.0)
   country_select (~> 3.1)
+  cuprite
   database_cleaner-active_record
   decent_exposure
   devise (~> 4.9)
@@ -788,7 +793,6 @@ DEPENDENCIES
   rubyXL (~> 3.4)
   sanitize
   sassc-rails (~> 2.1.2)
-  selenium-webdriver
   sentry-rails
   sentry-ruby
   sentry-sidekiq
